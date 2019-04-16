@@ -1,11 +1,3 @@
-import { ACTION_GET_ALL_ADS } from '../constants/action-types'
+import { getAllAds } from './getAllAds'
 
-
-export function getAllAds(data, adQueryID) {
-  return {
-    type: ACTION_GET_ALL_ADS,
-    payload: data.records,
-    adsCount: data.recordCount,
-    adQueryID: adQueryID
-  }
-}
+export { getAllAds }

@@ -7,6 +7,11 @@ import { getAllAds } from '../../actions'
 class Grid extends React.Component{
     constructor(props) {
         super(props)
+        this.getAllAds = this.getAllAds.bind(this)
+    }
+
+    getAllAds() {
+        
     }
 
     render() {
