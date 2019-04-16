@@ -1,0 +1,1 @@
+export const ACTION_GET_ALL_ADS = "ACTION_GET_ALL_ADS"
