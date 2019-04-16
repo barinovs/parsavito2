@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 
-import Grid from './containers/grid/grid'
+import { Grid, AdQueries } from './containers'
 
 class App extends Component{
     constructor(props) {
@@ -12,6 +12,7 @@ class App extends Component{
     render() {
         return(
             <div>
+                <AdQueries />
                 <Grid />
             </div>
         )
