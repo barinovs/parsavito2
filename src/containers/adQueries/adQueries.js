@@ -4,13 +4,17 @@ import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import { getAdQueries } from '../../actions'
 import { API_ENDPOINT } from '../../constants'
+import { DropDownComponent } from '../../components'
 
 class AdQueries extends React.Component{
     constructor(props) {
         super(props)
+        this.state = {
+            adQueries: []
+        }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         console.log(API_ENDPOINT + 'getAdsQuery.php')
         const url = API_ENDPOINT + 'getAdsQuery.php'
 
@@ -19,14 +23,15 @@ class AdQueries extends React.Component{
         })
         .then(response => {
             this.setState({
-                items: response.data
+                adQueries: response.data
             })
         })
     }
 
     render() {
+        const { adQueries } = this.state
         return(
-            <div>Тут будет комбобокс</div>
+            <DropDownComponent adQueries={adQueries}/>
         )
     }
 
