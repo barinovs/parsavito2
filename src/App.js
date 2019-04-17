@@ -13,7 +13,9 @@ class App extends Component{
     render() {
         return(
             <div>
-
+                <Navbar sticky="top"  bg="dark" variant="dark" expand="lg">
+                <Navbar.Brand href="#home"> Парсер Avito</Navbar.Brand>
+                </Navbar>
                 <AdQueries />
                 <Grid />
             </div>
