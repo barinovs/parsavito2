@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import Navbar from 'react-bootstrap/Navbar'
 
 
-import Grid from './containers/grid/grid'
+import { Grid, AdQueries } from './containers'
 
 class App extends Component{
     constructor(props) {
@@ -12,6 +13,10 @@ class App extends Component{
     render() {
         return(
             <div>
+                <Navbar sticky="top"  bg="dark" variant="dark" expand="lg">
+                <Navbar.Brand href="#home"> Парсер Avito</Navbar.Brand>
+                </Navbar>
+                <AdQueries />
                 <Grid />
             </div>
         )
