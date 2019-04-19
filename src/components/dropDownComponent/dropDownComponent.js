@@ -62,7 +62,7 @@ class DropDownComponent extends React.Component{
     }
 
     render() {
-        const { adQueries } = this.props
+        const { adQueries, changeAdQuery } = this.props
         const { title } = this.state
         return(
             <Dropdown onClick={this.toggle}>
@@ -74,7 +74,13 @@ class DropDownComponent extends React.Component{
               <Dropdown.Menu>
                 {
                     adQueries.map( (item, idx) => {
-                        return <Dropdown.Item key={idx} >{item.description}</Dropdown.Item>
+                        return <Dropdown.Item
+                                    key={idx}
+                                    dropdownvalue={item.description}
+                                    onClick={changeAdQuery}
+                                >
+                                    {item.description}
+                                </Dropdown.Item>
                     } )
                 }
               </Dropdown.Menu>

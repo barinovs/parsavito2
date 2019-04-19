@@ -1,4 +1,4 @@
-import { ACTION_GET_AD_QUERIES } from '../constants/actionTypes'
+import { ACTION_GET_AD_QUERIES } from '../constants'
 
 
 export function getAdQueries(records){

@@ -1,27 +1,28 @@
-import { ACTION_GET_AD_QUERIES } from '../constants/actionTypes'
+import {
+    ACTION_GET_AD_QUERIES,
+    SET_CURRENT_AD_QUERY
+} from '../constants'
 
 
-const AD_QUERIES = [
-    {
-        id: 1,
-        name: 'Адын'
-    },
-    {
-        id: 2,
-        name: 'Дыва'
-    },
-    {
-        id: 3,
-        name: 'Тыри'
-    }
-]
+const initialState = {
+    records: [],
+    currentAdQuery: ''
+}
 
-const adQueries = (state = AD_QUERIES, action) => {
-    const { type, records } = action
+
+const adQueries = (state = initialState, action) => {
+    const { type, records, adQuery } = action
     switch (type) {
         case ACTION_GET_AD_QUERIES: {
             return {...state,
-                        adQieries: records
+                        records: records
+                    }
+        }
+    }
+    switch (type) {
+        case SET_CURRENT_AD_QUERY: {
+            return {...state,
+                        currentAdQuery: adQuery
                     }
         }
     }

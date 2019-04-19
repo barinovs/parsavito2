@@ -1,4 +1,4 @@
-import { ACTION_GET_ALL_ADS } from '../constants/actionTypes'
+import { ACTION_GET_ALL_ADS } from '../constants'
 
 
 export function getAllAds(records){

@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
-import { getAdQueries } from '../../actions'
+import { getAdQueries, setCurrentAdQuery} from '../../actions'
 import { API_ENDPOINT } from '../../constants'
-import { DropDownComponent } from '../../components'
+import { DropDownComponent, AddButtonComponent } from '../../components'
 
 class AdQueries extends React.Component{
     constructor(props) {
@@ -12,6 +12,8 @@ class AdQueries extends React.Component{
         this.state = {
             adQueries: []
         }
+        this.newAdQuery = this.newAdQuery.bind(this)
+        this.changeAdQuery = this.changeAdQuery.bind(this)
     }
 
     componentDidMount() {
@@ -28,10 +30,29 @@ class AdQueries extends React.Component{
         })
     }
 
+    changeAdQuery(sender) {
+        const { setCurrentAdQuery } = this.props
+        const description = sender.currentTarget.getAttribute("dropdownvalue")
+        setCurrentAdQuery(description)
+
+    }
+
+    newAdQuery() {
+        console.log('newAdQuery');
+    }
+
     render() {
         const { adQueries } = this.state
+
         return(
-            <DropDownComponent adQueries={adQueries}/>
+            <div>
+                <AddButtonComponent
+                    variant = "success"
+                    onClick = {this.newAdQuery}
+                />
+                <DropDownComponent changeAdQuery={this.changeAdQuery} adQueries={adQueries}/>
+
+            </div>
         )
     }
 
@@ -45,7 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAdQueries: bindActionCreators(getAdQueries, dispatch)
+        getAdQueries: bindActionCreators(getAdQueries, dispatch),
+        setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)
