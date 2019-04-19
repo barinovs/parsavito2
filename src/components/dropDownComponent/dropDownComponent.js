@@ -36,6 +36,23 @@ class DropDownComponent extends React.Component{
         }
         else {
 
+            const { _getAllAds } = this.props
+
+            _getAllAds()
+
+            // const queryString = ''
+            //
+            // axios.get(API_ENDPOINT + 'getData.php'  + queryString,
+            //           {
+            //               headers: { 'Content-Type': 'application/json' }
+            //           })
+            // .then(response => {
+            //     getAllAds(response.data.records)
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            // })
+
             // const { getAllAds, filterAds, setAdsNoLoad } = this.props
             //
             // setAdsNoLoad()

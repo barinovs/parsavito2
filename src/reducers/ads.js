@@ -8,7 +8,7 @@ const ads = (state = ADS, action) => {
     switch (type) {
         case ACTION_GET_ALL_ADS: {
             return {...state,
-                        ads: records
+                        records: records
                     }
         }
     }
