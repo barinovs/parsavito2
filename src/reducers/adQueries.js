@@ -6,7 +6,9 @@ import {
 
 const initialState = {
     records: [],
-    currentAdQuery: 'Выберите запрос'
+    currentAdQuery: {
+        description: 'Выберите запрос'
+    }
 }
 
 
