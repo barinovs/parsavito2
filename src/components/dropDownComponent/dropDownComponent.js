@@ -78,6 +78,7 @@ class DropDownComponent extends React.Component{
                                     key={idx}
                                     dropdownvaluedescription={item.description}
                                     dropdownvalueurl={item.url}
+                                    dropdownvalueid={item.id}
                                     onClick={changeAdQuery}
                                 >
                                     {item.description}

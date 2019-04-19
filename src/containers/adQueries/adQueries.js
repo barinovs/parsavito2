@@ -34,9 +34,11 @@ class AdQueries extends React.Component{
         const { setCurrentAdQuery } = this.props
         const description = sender.currentTarget.getAttribute("dropdownvaluedescription")
         const url = sender.currentTarget.getAttribute("dropdownvalueurl")
+        const id = sender.currentTarget.getAttribute("dropdownvalueid")
         const currentAdQuery = {
             description: description,
-            url: url
+            url: url,
+            id: id
         }
         setCurrentAdQuery(currentAdQuery)
 
