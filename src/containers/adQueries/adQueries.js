@@ -32,8 +32,13 @@ class AdQueries extends React.Component{
 
     changeAdQuery(sender) {
         const { setCurrentAdQuery } = this.props
-        const description = sender.currentTarget.getAttribute("dropdownvalue")
-        setCurrentAdQuery(description)
+        const description = sender.currentTarget.getAttribute("dropdownvaluedescription")
+        const url = sender.currentTarget.getAttribute("dropdownvalueurl")
+        const currentAdQuery = {
+            description: description,
+            url: url
+        }
+        setCurrentAdQuery(currentAdQuery)
 
     }
 
@@ -43,6 +48,7 @@ class AdQueries extends React.Component{
 
     render() {
         const { adQueries } = this.state
+        const { currentAdQuery } = this.props
 
         return(
             <div>
@@ -50,7 +56,11 @@ class AdQueries extends React.Component{
                     variant = "success"
                     onClick = {this.newAdQuery}
                 />
-                <DropDownComponent changeAdQuery={this.changeAdQuery} adQueries={adQueries}/>
+                <DropDownComponent
+                    changeAdQuery={this.changeAdQuery}
+                    adQueries={adQueries}
+                    currentAdQuery={currentAdQuery.description}
+                />
 
             </div>
         )
@@ -60,7 +70,8 @@ class AdQueries extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-         adQueries: state.adQueries
+         adQueries: state.adQueries.records,
+         currentAdQuery: state.adQueries.currentAdQuery
     }
 }
 
