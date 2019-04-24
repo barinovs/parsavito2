@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
-import { FaPlusCircle } from 'react-icons/fa'
+// import { FaPlusCircle } from 'react-icons/fa'
 import './addButtonComponent.css'
 
 
@@ -9,7 +9,7 @@ const AddButtonComponent = ({ variant, value, onClick }) => (
     <Button
         variant={variant}
         onClick={onClick}
-        className="addButton"> {value} <FaPlusCircle />
+        className="addButton"> {value}
     </Button>
 )
 export default AddButtonComponent
@@ -22,6 +22,6 @@ AddButtonComponent.propTypes = {
 
 AddButtonComponent.defaultProps = {
     variant: 'secondary',
-    value: '',
+    value: '+',
     onClick: () => {}
 }
