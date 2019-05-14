@@ -11,6 +11,7 @@ const AddButtonComponent = ({ variant, value, onClick }) => (
         onClick={onClick}
         className="addButton"> {value}
     </Button>
+
 )
 export default AddButtonComponent
 

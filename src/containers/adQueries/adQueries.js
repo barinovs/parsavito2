@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getAdQueries, setCurrentAdQuery} from '../../actions'
 import { API_ENDPOINT } from '../../constants'
 import { DropDownComponent, AddButtonComponent } from '../../components'
+import './adQueries.css'
 
 class AdQueries extends React.Component{
     constructor(props) {
@@ -54,16 +55,24 @@ class AdQueries extends React.Component{
 
         return(
             <div>
-                <AddButtonComponent
-                    variant = "success"
-                    onClick = {this.newAdQuery}
-                />
-                <DropDownComponent
-                    changeAdQuery={this.changeAdQuery}
-                    adQueries={adQueries}
-                    currentAdQuery={currentAdQuery.description}
-                />
-
+                <ul className="menu">
+                    <li>
+                        <DropDownComponent
+                            changeAdQuery={this.changeAdQuery}
+                            adQueries={adQueries}
+                            currentAdQuery={currentAdQuery.description}
+                        />
+                    </li>
+                    <li>
+                        <i className="fa fa-star">1</i>
+                    </li>
+                    <li>
+                        <AddButtonComponent
+                            variant = "success"
+                            onClick = {this.newAdQuery}
+                        />
+                    </li>
+                </ul>
             </div>
         )
     }
