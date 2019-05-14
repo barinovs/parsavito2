@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button'
 // import { FaPlusCircle } from 'react-icons/fa'
 import './addButtonComponent.css'
 
+// import AddAdQueryComponent from '../../components'
+
 
 const AddButtonComponent = ({ variant, value, onClick }) => (
     <Button

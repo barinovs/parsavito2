@@ -4,14 +4,15 @@ import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import { getAdQueries, setCurrentAdQuery} from '../../actions'
 import { API_ENDPOINT } from '../../constants'
-import { DropDownComponent, AddButtonComponent } from '../../components'
+import { DropDownComponent, AddButtonComponent, AddAdQueryComponent } from '../../components'
 import './adQueries.css'
 
 class AdQueries extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            adQueries: []
+            adQueries: [],
+            showModal: false
         }
         this.newAdQuery = this.newAdQuery.bind(this)
         this.changeAdQuery = this.changeAdQuery.bind(this)
@@ -46,7 +47,10 @@ class AdQueries extends React.Component{
     }
 
     newAdQuery() {
-        console.log('newAdQuery');
+        console.log('newAdQuery')
+        this.setState({
+            showModal: !this.state.showModal
+        })
     }
 
     render() {
@@ -54,7 +58,13 @@ class AdQueries extends React.Component{
         const { currentAdQuery } = this.props
 
         return(
+            
             <div>
+                if (this.state.showModal) {
+                    <AddAdQueryComponent />
+                }
+
+
                 <ul className="menu">
                     <li>
                         <DropDownComponent
