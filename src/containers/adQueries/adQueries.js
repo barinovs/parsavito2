@@ -64,9 +64,6 @@ class AdQueries extends React.Component{
                         />
                     </li>
                     <li>
-                        <i className="fa fa-star">1</i>
-                    </li>
-                    <li>
                         <AddButtonComponent
                             variant = "success"
                             onClick = {this.newAdQuery}
