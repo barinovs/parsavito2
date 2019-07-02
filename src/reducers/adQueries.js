@@ -1,6 +1,7 @@
 import {
     ACTION_GET_AD_QUERIES,
-    SET_CURRENT_AD_QUERY
+    SET_CURRENT_AD_QUERY,
+    ACTION_UUU
 } from '../constants'
 
 
@@ -8,12 +9,13 @@ const initialState = {
     records: [],
     currentAdQuery: {
         description: 'Выберите запрос'
-    }
+    },
+    showModal: false
 }
 
 
 const adQueries = (state = initialState, action) => {
-    const { type, records, adQuery } = action
+    const { type, records, adQuery, showModal } = action
     switch (type) {
         case ACTION_GET_AD_QUERIES: {
             return {...state,
@@ -25,6 +27,13 @@ const adQueries = (state = initialState, action) => {
         case SET_CURRENT_AD_QUERY: {
             return {...state,
                         currentAdQuery: adQuery
+                    }
+        }
+    }
+    switch (type) {
+        case ACTION_UUU: {
+            return {...state,
+                        showModal: showModal
                     }
         }
     }

@@ -2,9 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
-import { getAdQueries, setCurrentAdQuery} from '../../actions'
+import { getAdQueries,
+         setCurrentAdQuery,
+         setStateModalAddAdQuery} from '../../actions'
 import { API_ENDPOINT } from '../../constants'
-import { DropDownComponent, AddButtonComponent, AddAdQueryComponent } from '../../components'
+import { DropDownComponent,
+         AddButtonComponent,
+         AddAdQueryComponent } from '../../components'
 import './adQueries.css'
 
 class AdQueries extends React.Component{
@@ -47,10 +51,12 @@ class AdQueries extends React.Component{
     }
 
     newAdQuery() {
+        const {setStateModalAddAdQuery} = this.props
         console.log('newAdQuery')
         this.setState({
             showModal: !this.state.showModal
         })
+        setStateModalAddAdQuery(this.state.showModal)
     }
 
     render() {
@@ -97,7 +103,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAdQueries: bindActionCreators(getAdQueries, dispatch),
-        setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch)
+        setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch),
+        setStateModalAddAdQuery: bindActionCreators(setStateModalAddAdQuery, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)
