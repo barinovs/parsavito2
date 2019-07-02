@@ -57,13 +57,14 @@ class AdQueries extends React.Component{
         const { adQueries } = this.state
         const { currentAdQuery } = this.props
 
-        return(
-            
-            <div>
-                if (this.state.showModal) {
-                    <AddAdQueryComponent />
-                }
+        // const testComp =
 
+        return (
+            <div>
+
+                {
+                    this.state.showModal && <AddAdQueryComponent />
+                }
 
                 <ul className="menu">
                     <li>
