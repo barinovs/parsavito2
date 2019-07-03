@@ -1,7 +1,7 @@
 import {
     ACTION_GET_AD_QUERIES,
     SET_CURRENT_AD_QUERY,
-    ACTION_UUU
+    ACTION_SET_STATE_MODAL_ADD_AD_QUERY
 } from '../constants'
 
 
@@ -31,7 +31,7 @@ const adQueries = (state = initialState, action) => {
         }
     }
     switch (type) {
-        case ACTION_UUU: {
+        case ACTION_SET_STATE_MODAL_ADD_AD_QUERY: {
             return {...state,
                         showModal: showModal
                     }

@@ -56,12 +56,12 @@ class AdQueries extends React.Component{
         this.setState({
             showModal: !this.state.showModal
         })
-        setStateModalAddAdQuery(this.state.showModal)
+        setStateModalAddAdQuery(true)
     }
 
     render() {
         const { adQueries } = this.state
-        const { currentAdQuery } = this.props
+        const { currentAdQuery, setStateModalAddAdQuery, showModal } = this.props
 
         // const testComp =
 
@@ -69,7 +69,10 @@ class AdQueries extends React.Component{
             <div>
 
                 {
-                    this.state.showModal && <AddAdQueryComponent />
+                    showModal
+                        && <AddAdQueryComponent
+                              setStateModalAddAdQuery={setStateModalAddAdQuery}
+                           />
                 }
 
                 <ul className="menu">
@@ -96,7 +99,8 @@ class AdQueries extends React.Component{
 const mapStateToProps = (state) => {
     return {
          adQueries: state.adQueries.records,
-         currentAdQuery: state.adQueries.currentAdQuery
+         currentAdQuery: state.adQueries.currentAdQuery,
+         showModal: state.adQueries.showModal
     }
 }
 

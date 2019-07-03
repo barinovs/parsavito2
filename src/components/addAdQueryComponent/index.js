@@ -17,6 +17,8 @@ class AddAdQueryComponent extends React.Component{
 
     handleClose() {
       this.setState({ show: false });
+      const { setStateModalAddAdQuery } = this.props
+      setStateModalAddAdQuery(false)
     }
 
     handleShow() {
