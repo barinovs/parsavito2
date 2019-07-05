@@ -15,50 +15,29 @@ class DropDownComponent extends React.Component{
         this.toggle = this.toggle.bind(this)
     }
 
+
+
     toggle() {
-        console.log('Toggle')
+        const { getAdQueries } = this.props
+
         this.setState(prevState => ({
           dropdownOpen: !prevState.dropdownOpen
         }))
 
+        const { dropdownClick } = this.props
+
+
         const url = API_ENDPOINT + 'getAdsQuery.php'
 
-        if (!this.state.dropdownOpen) {
+        // if (this.state.dropdownOpen) {
 
             axios.get(url, {
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(response => {
-                this.setState({
-                    items: response.data
-                })
+                dropdownClick(response.data)
             })
-        }
-        else {
-
-            // const { getAllAds, filterAds, setAdsNoLoad } = this.props
-            //
-            // setAdsNoLoad()
-            //
-            // const params = {
-            //     adQueryID: e.currentTarget.getAttribute("id")
-            // }
-            //
-            // const queryString = parseQueryString(params)
-            // console.log(API_ENDPOINT + 'getData.php'  + queryString)
-            //
-            // axios.get(API_ENDPOINT + 'getData.php'  + queryString,
-            //           {
-            //               headers: { 'Content-Type': 'application/json' }
-            //           })
-            // .then(response => {
-            //     getAllAds(response.data, params.adQueryID)
-            //     filterAds(response.data.records)
-            // })
-            // .catch(error => {
-            //     console.log(error);
-            // })
-        }
+        // }
     }
 
     render() {

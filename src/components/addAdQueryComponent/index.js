@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-
+import { API_ENDPOINT } from '../../constants'
 
 class AddAdQueryComponent extends React.Component{
     constructor(props, context) {
@@ -55,7 +55,7 @@ class AddAdQueryComponent extends React.Component{
         axios({
             method: 'post',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            url: 'http://parsavito/api/insertAdQuery.php',
+            url: API_ENDPOINT + 'insertAdQuery.php',
             data: params
         })
         .then(function(response) {

@@ -16,6 +16,7 @@ const initialState = {
 
 const adQueries = (state = initialState, action) => {
     const { type, records, adQuery, showModal } = action
+    console.log('Reducer ' + records);
     switch (type) {
         case ACTION_GET_AD_QUERIES: {
             return {...state,

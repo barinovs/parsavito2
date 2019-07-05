@@ -20,9 +20,13 @@ class AdQueries extends React.Component{
         }
         this.newAdQuery = this.newAdQuery.bind(this)
         this.changeAdQuery = this.changeAdQuery.bind(this)
+        this.dropdownClick = this.dropdownClick.bind(this)
     }
 
     componentDidMount() {
+
+        const { getAdQueries } = this.props
+
         console.log(API_ENDPOINT + 'getAdsQuery.php')
         const url = API_ENDPOINT + 'getAdsQuery.php'
 
@@ -30,9 +34,7 @@ class AdQueries extends React.Component{
             headers: { 'Content-Type': 'application/json' }
         })
         .then(response => {
-            this.setState({
-                adQueries: response.data
-            })
+            getAdQueries(response.data)
         })
     }
 
@@ -50,6 +52,18 @@ class AdQueries extends React.Component{
 
     }
 
+    dropdownClick(records) {
+        const { getAdQueries } = this.props
+        const url = API_ENDPOINT + 'getAdsQuery.php'
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getAdQueries(records)
+        })
+    }
+
     newAdQuery() {
         const {setStateModalAddAdQuery} = this.props
         console.log('newAdQuery')
@@ -60,10 +74,8 @@ class AdQueries extends React.Component{
     }
 
     render() {
-        const { adQueries } = this.state
+        const { adQueries } = this.props
         const { currentAdQuery, setStateModalAddAdQuery, showModal } = this.props
-
-        // const testComp =
 
         return (
             <div>
@@ -81,6 +93,7 @@ class AdQueries extends React.Component{
                             changeAdQuery={this.changeAdQuery}
                             adQueries={adQueries}
                             currentAdQuery={currentAdQuery.description}
+                            dropdownClick={this.dropdownClick}
                         />
                     </li>
                     <li>
