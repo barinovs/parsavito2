@@ -13,11 +13,12 @@ class DropDownComponent extends React.Component{
             title: 'Список запросов'
         }
         this.toggle = this.toggle.bind(this)
+        this.onSelect = this.onSelect.bind(this)
     }
 
 
 
-    toggle() {
+    toggle(e) {
         const { getAdQueries } = this.props
 
         this.setState(prevState => ({
@@ -27,6 +28,7 @@ class DropDownComponent extends React.Component{
         const { dropdownClick } = this.props
 
 
+        // Получение списка запросов
         const url = API_ENDPOINT + 'getAdsQuery.php'
 
         // if (this.state.dropdownOpen) {
@@ -38,13 +40,25 @@ class DropDownComponent extends React.Component{
                 dropdownClick(response.data)
             })
         // }
+
+        // Получение списка объявлений
+
+
+    }
+
+    onSelect(event) {
+        const adQueryId = event.target.getAttribute('dropdownvalueid')
+        
+
+        this.props.getAdsById(adQueryId)
+
     }
 
     render() {
         const { adQueries, changeAdQuery, currentAdQuery } = this.props
         const { title } = this.state
         return(
-            <Dropdown onClick={this.toggle}>
+            <Dropdown onClick={this.toggle} >
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 {currentAdQuery}
               </Dropdown.Toggle>
@@ -54,11 +68,13 @@ class DropDownComponent extends React.Component{
                 {
                     adQueries.map( (item, idx) => {
                         return <Dropdown.Item
-                                    key={idx}
+                                    eventKey={item.id}
+                                    key={item.id}
                                     dropdownvaluedescription={item.description}
                                     dropdownvalueurl={item.url}
                                     dropdownvalueid={item.id}
                                     onClick={changeAdQuery}
+                                    onSelect={(eventKey, event) => this.onSelect(event)}
                                 >
                                     {item.description}
                                 </Dropdown.Item>

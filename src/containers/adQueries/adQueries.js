@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import { getAdQueries,
          setCurrentAdQuery,
-         setStateModalAddAdQuery} from '../../actions'
+         setStateModalAddAdQuery,
+         getAllAds } from '../../actions'
 import { API_ENDPOINT } from '../../constants'
 import { DropDownComponent,
          AddButtonComponent,
@@ -21,6 +22,7 @@ class AdQueries extends React.Component{
         this.newAdQuery = this.newAdQuery.bind(this)
         this.changeAdQuery = this.changeAdQuery.bind(this)
         this.dropdownClick = this.dropdownClick.bind(this)
+        this.getAdsById = this.getAdsById.bind(this)
     }
 
     componentDidMount() {
@@ -73,6 +75,22 @@ class AdQueries extends React.Component{
         setStateModalAddAdQuery(true)
     }
 
+    getAdsById(id) {
+
+        const { getAllAds } = this.props
+
+        const url = API_ENDPOINT + 'getData.php?ad_query_id='  + id
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getAllAds(response.data)
+        })
+
+
+    }
+
     render() {
         const { adQueries } = this.props
         const { currentAdQuery, setStateModalAddAdQuery, showModal } = this.props
@@ -94,6 +112,7 @@ class AdQueries extends React.Component{
                             adQueries={adQueries}
                             currentAdQuery={currentAdQuery.description}
                             dropdownClick={this.dropdownClick}
+                            getAdsById={this.getAdsById}
                         />
                     </li>
                     <li>
@@ -121,7 +140,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAdQueries: bindActionCreators(getAdQueries, dispatch),
         setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch),
-        setStateModalAddAdQuery: bindActionCreators(setStateModalAddAdQuery, dispatch)
+        setStateModalAddAdQuery: bindActionCreators(setStateModalAddAdQuery, dispatch),
+        getAllAds: bindActionCreators(getAllAds, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)
