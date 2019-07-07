@@ -9,6 +9,7 @@ import { TableComponent } from '../../components'
 class Grid extends React.Component{
     constructor(props) {
         super(props)
+        this.state = {records:this.props.records}
         this.getAllAds = this.getAllAds.bind(this)
     }
 
@@ -17,9 +18,10 @@ class Grid extends React.Component{
     }
 
     render() {
+        const { records } = this.props
         return(
             <div>
-                <TableComponent />
+                <TableComponent records={records}/>
             </div>
         )
     }

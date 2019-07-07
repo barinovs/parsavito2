@@ -8,34 +8,35 @@ class TableComponent extends React.Component{
     }
 
     render() {
+        const { records } = this.props
         return(
             <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>id</th>
+                    <th>Город</th>
+                    <th>Модель</th>
+                    <th>Цена</th>
+                    <th>Телефон</th>
+                    <th>Пробег</th>
+                    <th>Год выпуска</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                    {
+                        records.map( (item, idx) => {
+                            return(<tr key={idx}>
+                                    <td>{item.id}</td>
+                                    <td>{item.city}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.phone_number}</td>
+                                    <td>{item.mileage}</td>
+                                    <td>{item.yearIssue}</td>
+                                   </tr>
+                                  )
+                        })
+                    }
                 </tbody>
             </Table>
         )
