@@ -14,7 +14,7 @@ class TableComponent extends React.Component{
                 <thead>
                   <tr>
                     <th>Город</th>
-                    <th>Модель</th>
+                    <th>Модель <input type="text"></input></th>
                     <th>Цена</th>
                     <th>Телефон</th>
                     <th>Пробег</th>
