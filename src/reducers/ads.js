@@ -1,14 +1,21 @@
-import { ACTION_GET_ALL_ADS } from '../constants/actionTypes'
+import { ACTION_GET_ALL_ADS } from '../constants'
 
 
 const ADS = new Array()
 
-const ads = (state = ADS, action) => {
-    const { type, records } = action
+const initialState = {
+    records: [],
+    recordCount: 0
+}
+
+const ads = (state = initialState, action) => {
+
+    const { type, records, recordCount } = action
     switch (type) {
         case ACTION_GET_ALL_ADS: {
             return {...state,
-                        ads: records
+                        records: records,
+                        recordCount: recordCount
                     }
         }
     }

@@ -15,8 +15,8 @@ const initialState = {
 
 
 const adQueries = (state = initialState, action) => {
+    console.log('экшон тайп в редюсере ' + action.type);
     const { type, records, adQuery, showModal } = action
-    console.log('Reducer ' + records);
     switch (type) {
         case ACTION_GET_AD_QUERIES: {
             return {...state,

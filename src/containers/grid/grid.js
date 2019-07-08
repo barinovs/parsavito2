@@ -4,19 +4,25 @@ import { bindActionCreators } from 'redux'
 
 import { getAllAds } from '../../actions'
 
+import { TableComponent } from '../../components'
+
 class Grid extends React.Component{
     constructor(props) {
         super(props)
+        this.state = {records:this.props.records}
         this.getAllAds = this.getAllAds.bind(this)
     }
 
     getAllAds() {
-        
+
     }
 
     render() {
+        const { records } = this.props
         return(
-            <div>тут будет грид</div>
+            <div>
+                <TableComponent records={records}/>
+            </div>
         )
     }
 
@@ -24,7 +30,8 @@ class Grid extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-         ads: state.ads
+         records: state.ads.records,
+         recordCount: state.ads.recordCount
     }
 }
 
