@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { getAllAds } from '../../actions'
 
-import { TableComponent } from '../../components'
+import { TableComponent, PreloaderComponent } from '../../components'
 
 class Grid extends React.Component{
     constructor(props) {
@@ -18,12 +18,16 @@ class Grid extends React.Component{
     }
 
     render() {
-        const { records } = this.props
-        return(
-            <div>
-                <TableComponent records={records}/>
-            </div>
-        )
+        if (!this.props.adsIsLoad) {
+            return <PreloaderComponent />
+        }else{
+            const { records } = this.props
+            return(
+                <div>
+                    <TableComponent records={records}/>
+                </div>
+            )
+        }
     }
 
 }
@@ -31,7 +35,8 @@ class Grid extends React.Component{
 const mapStateToProps = (state) => {
     return {
          records: state.ads.records,
-         recordCount: state.ads.recordCount
+         recordCount: state.ads.recordCount,
+         adsIsLoad: state.ads.adsIsLoad
     }
 }
 

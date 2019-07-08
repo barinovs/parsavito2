@@ -13,7 +13,6 @@ class TableComponent extends React.Component{
             <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
-                    <th>id</th>
                     <th>Город</th>
                     <th>Модель</th>
                     <th>Цена</th>
@@ -25,11 +24,10 @@ class TableComponent extends React.Component{
                 <tbody>
                     {
                         records.map( (item, idx) => {
-                            return(<tr key={idx}>
-                                    <td>{item.id}</td>
+                            return(<tr key={item.id}>
                                     <td>{item.city}</td>
                                     <td>{item.name}</td>
-                                    <td>{item.price}</td>
+                                    <td>{item.prices[0].price}</td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>
