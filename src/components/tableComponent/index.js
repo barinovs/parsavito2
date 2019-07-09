@@ -13,9 +13,8 @@ class TableComponent extends React.Component{
             <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
-                    <th>id</th>
                     <th>Город</th>
-                    <th>Модель</th>
+                    <th>Модель <input type="text" placeholder="Поиск"></input></th>
                     <th>Цена</th>
                     <th>Телефон</th>
                     <th>Пробег</th>
@@ -25,11 +24,10 @@ class TableComponent extends React.Component{
                 <tbody>
                     {
                         records.map( (item, idx) => {
-                            return(<tr key={idx}>
-                                    <td>{item.id}</td>
+                            return(<tr key={item.id}>
                                     <td>{item.city}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.price}</td>
+                                    <td><a href={item.url} target="blank">{item.name}</a></td>
+                                    <td>{item.prices[0].price}</td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>

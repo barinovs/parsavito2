@@ -5,7 +5,8 @@ import axios from 'axios'
 import { getAdQueries,
          setCurrentAdQuery,
          setStateModalAddAdQuery,
-         getAllAds } from '../../actions'
+         getAllAds,
+         setAdsIsLoad } from '../../actions'
 import { API_ENDPOINT } from '../../constants'
 import { DropDownComponent,
          AddButtonComponent,
@@ -77,7 +78,9 @@ class AdQueries extends React.Component{
 
     getAdsById(id) {
 
-        const { getAllAds } = this.props
+        const { getAllAds, setAdsIsLoad } = this.props
+
+        setAdsIsLoad(false)
 
         const url = API_ENDPOINT + 'getData.php?ad_query_id='  + id
 
@@ -86,8 +89,8 @@ class AdQueries extends React.Component{
         })
         .then(response => {
             getAllAds(response.data)
+            setAdsIsLoad(true)
         })
-
 
     }
 
@@ -141,7 +144,8 @@ const mapDispatchToProps = (dispatch) => {
         getAdQueries: bindActionCreators(getAdQueries, dispatch),
         setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch),
         setStateModalAddAdQuery: bindActionCreators(setStateModalAddAdQuery, dispatch),
-        getAllAds: bindActionCreators(getAllAds, dispatch)
+        getAllAds: bindActionCreators(getAllAds, dispatch),
+        setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)

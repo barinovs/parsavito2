@@ -3,11 +3,15 @@ import AddButtonComponent from './addButtonComponent/addButtonComponent'
 import DisplayComponent from './displayComponent'
 import AddAdQueryComponent from './addAdQueryComponent'
 import TableComponent from './tableComponent'
+import LoadingComponent from './tableComponent'
+import PreloaderComponent from './loadingComponent'
 
 
 export { DropDownComponent,
          AddButtonComponent,
          DisplayComponent,
          AddAdQueryComponent,
-         TableComponent
+         TableComponent,
+         LoadingComponent,
+         PreloaderComponent
         }
