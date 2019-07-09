@@ -5,8 +5,9 @@ const ADS = new Array()
 
 const initialState = {
     records: [],
+    filteredRecords: [],
     recordCount: 0,
-    adsIsLoad: true
+    adsIsLoad: true,
 }
 
 const ads = (state = initialState, action) => {
