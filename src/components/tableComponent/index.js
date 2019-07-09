@@ -14,7 +14,7 @@ class TableComponent extends React.Component{
                 <thead>
                   <tr>
                     <th>Город</th>
-                    <th>Модель</th>
+                    <th>Модель <input type="text" placeholder="Поиск"></input></th>
                     <th>Цена</th>
                     <th>Телефон</th>
                     <th>Пробег</th>
@@ -26,7 +26,7 @@ class TableComponent extends React.Component{
                         records.map( (item, idx) => {
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
-                                    <td>{item.name}</td>
+                                    <td><a href={item.url} target="blank">{item.name}</a></td>
                                     <td>{item.prices[0].price}</td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
