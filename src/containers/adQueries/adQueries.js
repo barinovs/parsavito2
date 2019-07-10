@@ -6,7 +6,8 @@ import { getAdQueries,
          setCurrentAdQuery,
          setStateModalAddAdQuery,
          getAllAds,
-         setAdsIsLoad } from '../../actions'
+         setAdsIsLoad,
+         refreshFilteredRecords } from '../../actions'
 import { API_ENDPOINT } from '../../constants'
 import { DropDownComponent,
          AddButtonComponent,
@@ -78,7 +79,7 @@ class AdQueries extends React.Component{
 
     getAdsById(id) {
 
-        const { getAllAds, setAdsIsLoad } = this.props
+        const { getAllAds, setAdsIsLoad, refreshFilteredRecords } = this.props
 
         setAdsIsLoad(false)
 
@@ -89,7 +90,8 @@ class AdQueries extends React.Component{
         })
         .then(response => {
             getAllAds(response.data)
-            setAdsIsLoad(true)
+            setAdsIsLoad(true),
+            refreshFilteredRecords(response.data.records)
         })
 
     }
@@ -145,7 +147,8 @@ const mapDispatchToProps = (dispatch) => {
         setCurrentAdQuery: bindActionCreators(setCurrentAdQuery, dispatch),
         setStateModalAddAdQuery: bindActionCreators(setStateModalAddAdQuery, dispatch),
         getAllAds: bindActionCreators(getAllAds, dispatch),
-        setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch)
+        setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch),
+        refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)

@@ -15,7 +15,7 @@ const initialState = {
 
 const ads = (state = initialState, action) => {
 
-    const { type, records, recordCount, flag } = action
+    const { type, records, recordCount, flag, filteredRecords } = action
     switch (type) {
         case ACTION_GET_ALL_ADS: {
             return {...state,

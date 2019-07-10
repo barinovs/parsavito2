@@ -21,10 +21,10 @@ class Grid extends React.Component{
         if (!this.props.adsIsLoad) {
             return <PreloaderComponent />
         }else{
-            const { records } = this.props
+            const { filteredRecords } = this.props
             return(
                 <div>
-                    <TableComponent records={records}/>
+                    <TableComponent records={filteredRecords}/>
                 </div>
             )
         }
@@ -36,7 +36,8 @@ const mapStateToProps = (state) => {
     return {
          records: state.ads.records,
          recordCount: state.ads.recordCount,
-         adsIsLoad: state.ads.adsIsLoad
+         adsIsLoad: state.ads.adsIsLoad,
+         filteredRecords: state.ads.filteredRecords,
     }
 }
 
