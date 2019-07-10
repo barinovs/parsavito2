@@ -8,13 +8,20 @@ class TableComponent extends React.Component{
     }
 
     render() {
-        const { records } = this.props
+        const { records, filterNameChange } = this.props
         return(
             <Table striped bordered hover variant="dark">
                 <thead>
                   <tr>
                     <th>Город</th>
-                    <th>Модель <input type="text" placeholder="Поиск"></input></th>
+                    <th>Модель
+                        <input
+                            type="text"
+                            placeholder="Поиск"
+                            onChange={filterNameChange}
+                        >
+                        </input>
+                    </th>
                     <th>Цена</th>
                     <th>Телефон</th>
                     <th>Пробег</th>
