@@ -1,4 +1,7 @@
-import { ACTION_GET_ALL_ADS, ACTION_SET_ADS_IS_LOAD } from '../constants'
+import { ACTION_GET_ALL_ADS,
+         ACTION_SET_ADS_IS_LOAD,
+         ACTION_REFRESH_FILTERED_RECORDS
+     } from '../constants'
 
 
 const ADS = new Array()
@@ -25,6 +28,13 @@ const ads = (state = initialState, action) => {
         case ACTION_SET_ADS_IS_LOAD: {
             return {...state,
                         adsIsLoad: flag
+                    }
+        }
+    }
+    switch (type) {
+        case ACTION_REFRESH_FILTERED_RECORDS: {
+            return {...state,
+                        filteredRecords: filteredRecords
                     }
         }
     }
