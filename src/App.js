@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Navbar from 'react-bootstrap/Navbar'
 
 
-import { Grid, AdQueries, Display } from './containers'
+import { Grid, AdQueries, Display, Filter } from './containers'
 
 class App extends Component{
     constructor(props) {
@@ -18,6 +18,7 @@ class App extends Component{
                     <Navbar.Brand href="#"><Display /></Navbar.Brand>
                 </Navbar>
                 <AdQueries />
+                <Filter />
                 <Grid />
             </div>
         )
