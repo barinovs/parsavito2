@@ -8,6 +8,8 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
+import { PriceOptionComponent } from '../../components'
+
 import './filter.css'
 
 class Filter extends React.Component{
@@ -80,28 +82,16 @@ class Filter extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Form.Label inline="true">От</Form.Label>
-                        <Form.Control inline="true" as="select">
-                            {
-                                arrPrices.map( (item, idx) =>
-                                    <option
-                                        value={item.value}
-                                        key={idx}
-                                    >
-                                        {item.text}
-                                    </option> )
-                            }
-
-                        </Form.Control>
+                          <PriceOptionComponent
+                              arrPrices={arrPrices}
+                              label="От"
+                          />
                       </Col>
                       <Col>
-                          <Form.Label inline="true">До</Form.Label>
-                          <Form.Control inline="true" as="select">
-                              {
-                                  arrPrices.map( (item, idx) => <option key={idx}>{item.text}</option> )
-                              }
-
-                          </Form.Control>
+                          <PriceOptionComponent
+                              arrPrices={arrPrices}
+                              label="До"
+                          />
                       </Col>
                     </Row>
 

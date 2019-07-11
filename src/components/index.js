@@ -5,6 +5,7 @@ import AddAdQueryComponent from './addAdQueryComponent'
 import TableComponent from './tableComponent'
 import LoadingComponent from './tableComponent'
 import PreloaderComponent from './loadingComponent'
+import PriceOptionComponent from './priceOptionComponent'
 
 
 export { DropDownComponent,
@@ -13,5 +14,5 @@ export { DropDownComponent,
          AddAdQueryComponent,
          TableComponent,
          LoadingComponent,
-         PreloaderComponent
+         PriceOptionComponent
         }
