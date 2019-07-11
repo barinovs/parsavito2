@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 import './filter.css'
 
@@ -27,7 +28,11 @@ class Filter extends React.Component{
     componentWillMount() {
         let arrPrices = []
         for (let i=0; i<=5000000; i+=100000) {
-            arrPrices.push(i)
+            let _obj = {
+                value: i,
+                text: String(i).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+            }
+            arrPrices.push(_obj)
         }
         this.setState({arrPrices})
     }
@@ -69,19 +74,36 @@ class Filter extends React.Component{
                           onChange={this.changeItemPerPage}
                       />
 
-                  <Form.Label>Цена</Form.Label>
+
+                    <Row>
+                        <Col><Form.Label>Цена</Form.Label></Col>
+                    </Row>
+                    <Row>
                       <Col>
                         <Form.Label inline="true">От</Form.Label>
                         <Form.Control inline="true" as="select">
                             {
-                                arrPrices.map( (item, idx) => <option key={idx}>{item}</option> )
+                                arrPrices.map( (item, idx) =>
+                                    <option
+                                        value={item.value}
+                                        key={idx}
+                                    >
+                                        {item.text}
+                                    </option> )
                             }
 
                         </Form.Control>
                       </Col>
                       <Col>
-                          123
+                          <Form.Label inline="true">До</Form.Label>
+                          <Form.Control inline="true" as="select">
+                              {
+                                  arrPrices.map( (item, idx) => <option key={idx}>{item.text}</option> )
+                              }
+
+                          </Form.Control>
                       </Col>
+                    </Row>
 
 
 
