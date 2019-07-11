@@ -25,11 +25,13 @@ const PriceOptionComponent = ({ arrPrices, label }) => (
 )
 
 PriceOptionComponent.propTypes = {
-
+    label: PropTypes.string,
+    arrPrices: PropTypes.array
 }
 
 PriceOptionComponent.defaultProps = {
-
+    label: '',
+    arrPrices: [{value:0, text:'0'}]
 }
 
 export default PriceOptionComponent
