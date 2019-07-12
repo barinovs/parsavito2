@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-const PriceOptionComponent = ({ arrPrices, label }) => (
+const SelectComponent = ({ arrPrices, label }) => (
    <div>
        <Form.Label inline="true">{label}</Form.Label>
        <Form.Control inline="true" as="select">
@@ -24,14 +24,14 @@ const PriceOptionComponent = ({ arrPrices, label }) => (
    </div>
 )
 
-PriceOptionComponent.propTypes = {
+SelectComponent.propTypes = {
     label: PropTypes.string,
     arrPrices: PropTypes.array
 }
 
-PriceOptionComponent.defaultProps = {
+SelectComponent.defaultProps = {
     label: '',
     arrPrices: [{value:0, text:'0'}]
 }
 
-export default PriceOptionComponent
+export default SelectComponent
