@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import { PriceOptionComponent } from '../../components'
+import { SelectComponent } from '../../components'
 
 import './filter.css'
 
@@ -82,15 +82,17 @@ class Filter extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                          <PriceOptionComponent
+                          <SelectComponent
                               arrPrices={arrPrices}
                               label="От"
+                              isFirst={true}
                           />
                       </Col>
                       <Col>
-                          <PriceOptionComponent
+                          <SelectComponent
                               arrPrices={arrPrices}
                               label="До"
+                              isFirst={false}
                           />
                       </Col>
                     </Row>
