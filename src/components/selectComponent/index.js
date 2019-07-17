@@ -5,33 +5,43 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-const SelectComponent = ({ arrPrices, label }) => (
-   <div>
-       <Form.Label inline="true">{label}</Form.Label>
-       <Form.Control inline="true" as="select">
-           {
-               arrPrices.map( (item, idx) =>
-                   <option
-                       value={item.value}
-                       key={idx}
-                   >
-                       {item.text}
-                   </option> )
-           }
+function SelectComponent({ arrPrices, label, isFirst }) {
+    let defValue = ''
+    if (!isFirst) {
+        arrPrices = arrPrices.reverse()
+    }
 
-       </Form.Control>
+    return(
+       <div>
+           <Form.Label inline="true">{label}</Form.Label>
+           <Form.Control inline="true" as="select">
+               {
 
-   </div>
-)
+                   arrPrices.map( (item, idx) =>
+                       <option
+                           value={item.value}
+                           key={idx}
+                       >
+                           {item.text}
+                       </option> )
+               }
+
+           </Form.Control>
+       </div>
+   )
+}
+
 
 SelectComponent.propTypes = {
     label: PropTypes.string,
-    arrPrices: PropTypes.array
+    arrPrices: PropTypes.array,
+    isFirst: PropTypes.bool
 }
 
 SelectComponent.defaultProps = {
     label: '',
-    arrPrices: [{value:0, text:'0'}]
+    arrPrices: [{value:0, text:'0'}],
+    isFirst: true
 }
 
 export default SelectComponent

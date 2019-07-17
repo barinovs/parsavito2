@@ -85,12 +85,14 @@ class Filter extends React.Component{
                           <SelectComponent
                               arrPrices={arrPrices}
                               label="От"
+                              isFirst={true}
                           />
                       </Col>
                       <Col>
                           <SelectComponent
                               arrPrices={arrPrices}
                               label="До"
+                              isFirst={false}
                           />
                       </Col>
                     </Row>
