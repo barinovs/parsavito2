@@ -13,6 +13,6 @@ export { DropDownComponent,
          DisplayComponent,
          AddAdQueryComponent,
          TableComponent,
-         LoadingComponent,
+         PreloaderComponent,
          SelectComponent
         }

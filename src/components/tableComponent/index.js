@@ -34,7 +34,7 @@ class TableComponent extends React.Component{
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
-                                    <td>{item.prices[0].price}</td>
+                                    <td>{item.price}</td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>
