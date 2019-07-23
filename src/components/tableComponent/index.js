@@ -8,7 +8,7 @@ class TableComponent extends React.Component{
     }
 
     render() {
-        const { records, filterNameChange } = this.props
+        const { records, filterNameChange, showPrices } = this.props
         return(
             <Table striped bordered hover variant="dark">
                 <thead>
@@ -34,7 +34,11 @@ class TableComponent extends React.Component{
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
-                                    <td>{item.price}</td>
+                                    <td
+                                        onMouseOver={showPrices}
+                                    >
+                                        {item.price}
+                                    </td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>

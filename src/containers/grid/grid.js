@@ -12,6 +12,11 @@ class Grid extends React.Component{
         this.state = {records:this.props.records}
         this.getAllAds = this.getAllAds.bind(this)
         this.filterNameChange = this.filterNameChange.bind(this)
+        this.showPrices = this.showPrices.bind(this)
+    }
+
+    showPrices(e) {
+        console.log('showPrices', e.target)
     }
 
     getAllAds() {
@@ -42,6 +47,7 @@ class Grid extends React.Component{
                     <TableComponent
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
+                        showPrices={this.showPrices}
                     />
                 </div>
             )

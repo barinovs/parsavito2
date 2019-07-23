@@ -20,7 +20,7 @@ class Filter extends React.Component{
         this.changeItemPerPage = this.changeItemPerPage.bind(this)
 
         this.state = {
-          show: true,
+          show: false,
           description: "",
           adQueryURL: ""
         }
