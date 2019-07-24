@@ -35,7 +35,8 @@ class TableComponent extends React.Component{
                                     <td>{item.city}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
                                     <td
-                                        onMouseOver={showPrices}
+                                        url={item.url}
+                                        onClick={showPrices}
                                     >
                                         {item.price}
                                     </td>

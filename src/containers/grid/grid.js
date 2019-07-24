@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getAllAds, refreshFilteredRecords } from '../../actions'
+import { getAllAds, refreshFilteredRecords, setStateModalShowPrices } from '../../actions'
 
 import { TableComponent, PreloaderComponent } from '../../components'
 
@@ -16,7 +16,11 @@ class Grid extends React.Component{
     }
 
     showPrices(e) {
-        console.log('showPrices', e.target)
+        const { setStateModalShowPrices, showModalPrices } = this.props
+        const url = e.target.attributes.url.value
+        console.log('showPrices', e.target.attributes.url.value)
+
+        setStateModalShowPrices(!showModalPrices)
     }
 
     getAllAds() {
@@ -62,6 +66,7 @@ const mapStateToProps = (state) => {
          recordCount: state.ads.recordCount,
          adsIsLoad: state.ads.adsIsLoad,
          filteredRecords: state.ads.filteredRecords,
+         showModalPrices: state.prices.showModalPrices,
     }
 }
 
@@ -69,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllAds: bindActionCreators(getAllAds, dispatch),
         refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
+        setStateModalShowPrices: bindActionCreators(setStateModalShowPrices, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Grid)
