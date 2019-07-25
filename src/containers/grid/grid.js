@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import axios from 'axios'
 
-import { getAllAds, refreshFilteredRecords, setStateModalShowPrices } from '../../actions'
+import { getAllAds, refreshFilteredRecords, setStateModalShowPrices, getPrices } from '../../actions'
 
 import { TableComponent, PreloaderComponent } from '../../components'
+import { API_ENDPOINT } from '../../constants'
 
 class Grid extends React.Component{
     constructor(props) {
@@ -16,11 +18,23 @@ class Grid extends React.Component{
     }
 
     showPrices(e) {
-        const { setStateModalShowPrices, showModalPrices } = this.props
-        const url = e.target.attributes.url.value
+        const { setStateModalShowPrices, showModalPrices, getPrices } = this.props
+        const ad_url = e.target.attributes.url.value
         console.log('showPrices', e.target.attributes.url.value)
 
         setStateModalShowPrices(!showModalPrices)
+
+        // getPrices(url, ['bla', 'blyad'])
+
+        const url = API_ENDPOINT + 'getPrices.php?url=' + ad_url
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getPrices(ad_url, response.data)
+        })
+
     }
 
     getAllAds() {
@@ -75,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
         getAllAds: bindActionCreators(getAllAds, dispatch),
         refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
         setStateModalShowPrices: bindActionCreators(setStateModalShowPrices, dispatch),
+        getPrices: bindActionCreators(getPrices, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Grid)

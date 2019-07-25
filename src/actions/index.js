@@ -5,6 +5,7 @@ import { setStateModalAddAdQuery } from './setStateModalAddAdQuery'
 import { setAdsIsLoad } from './setAdsIsLoad'
 import { refreshFilteredRecords } from './refreshFilteredRecords'
 import setStateModalShowPrices from './setStateModalShowPrices'
+import getPrices from './getPrices'
 
 export { getAllAds,
          getAdQueries,
@@ -12,4 +13,5 @@ export { getAllAds,
          setStateModalAddAdQuery,
          setAdsIsLoad,
          refreshFilteredRecords,
-         setStateModalShowPrices}
+         setStateModalShowPrices,
+         getPrices}
