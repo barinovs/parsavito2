@@ -42,7 +42,7 @@ class Grid extends React.Component{
     }
 
     filterNameChange(e) {
-        const { records, filteredRecords, refreshFilteredRecords } = this.props
+        const { records, filteredRecords, refreshFilteredRecords, showModalPrices } = this.props
 
         const isSearched = searchTerm => item => {
             return item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -56,13 +56,17 @@ class Grid extends React.Component{
     }
 
     render() {
+        const { showModalPrices, prices } = this.props
+        // const prices = [{id:1, price:700, dateChange:'2019-07-10'}, {id:2, price:500, dateChange:'2019-07-20'}]
         if (!this.props.adsIsLoad) {
             return <PreloaderComponent />
         }else{
             const { filteredRecords } = this.props
             return(
                 <div>
-                    <ModalPricesComponent />
+                    {showModalPrices
+                        && <ModalPricesComponent items={prices.items}/>
+                    }
                     <TableComponent
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
@@ -82,6 +86,7 @@ const mapStateToProps = (state) => {
          adsIsLoad: state.ads.adsIsLoad,
          filteredRecords: state.ads.filteredRecords,
          showModalPrices: state.prices.showModalPrices,
+         prices: state.prices.prices,
     }
 }
 

@@ -1,0 +1,15 @@
+.modalPrices {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-right: -100px;
+}
+
+.item {
+    width: 50px;
+    margin: 5px auto;
+}
