@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { getAllAds, refreshFilteredRecords, setStateModalShowPrices, getPrices } from '../../actions'
 
-import { TableComponent, PreloaderComponent } from '../../components'
+import { TableComponent, PreloaderComponent, ModalPricesComponent } from '../../components'
 import { API_ENDPOINT } from '../../constants'
 
 class Grid extends React.Component{
@@ -62,6 +62,7 @@ class Grid extends React.Component{
             const { filteredRecords } = this.props
             return(
                 <div>
+                    <ModalPricesComponent />
                     <TableComponent
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
