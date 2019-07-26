@@ -36,6 +36,7 @@ class TableComponent extends React.Component{
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
                                     <td
                                         url={item.url}
+                                        id_avito={item.id_avito} 
                                         onClick={showPrices}
                                     >
                                         {item.price}

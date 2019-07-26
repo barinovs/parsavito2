@@ -5,19 +5,22 @@ import { ACTION_SET_STATE_MODAL_SHOW_PRICES,
 
 const initialState = {
     showModalPrices: true,
-    prices: {
-        url: '',
-        items: [{
-            id:0,
-            price:"",
-            dateChange: ""
-        }]
-    }
+
+
+        "key":
+            [
+                {
+                    id: 0,
+                    price:"",
+                    dateChange: ""
+                }
+            ]
+
 }
 
 const prices = (state = initialState, action) => {
 
-    const { type, showModalPrices, url, prices } = action
+    const { type, showModalPrices, url, items } = action
     switch (type) {
         case ACTION_SET_STATE_MODAL_SHOW_PRICES: {
             return {...state,
@@ -28,8 +31,7 @@ const prices = (state = initialState, action) => {
     switch (type) {
         case ACTION_GET_PRICES: {
             return {...state,
-                        url: url,
-                        items: prices
+                        [url]:items
                     }
         }
     }

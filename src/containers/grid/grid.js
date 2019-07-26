@@ -11,7 +11,10 @@ import { API_ENDPOINT } from '../../constants'
 class Grid extends React.Component{
     constructor(props) {
         super(props)
-        this.state = {records:this.props.records}
+        this.state = {
+            records:this.props.records,
+            url_key: "key"
+        }
         this.getAllAds = this.getAllAds.bind(this)
         this.filterNameChange = this.filterNameChange.bind(this)
         this.showPrices = this.showPrices.bind(this)
@@ -20,6 +23,9 @@ class Grid extends React.Component{
     showPrices(e) {
         const { setStateModalShowPrices, showModalPrices, getPrices } = this.props
         const ad_url = e.target.attributes.url.value
+
+
+
         console.log('showPrices', e.target.attributes.url.value)
 
         setStateModalShowPrices(!showModalPrices)
@@ -34,6 +40,10 @@ class Grid extends React.Component{
         .then(response => {
             getPrices(ad_url, response.data)
         })
+
+        // this.setState({
+        //     url_key: ad_url
+        // })
 
     }
 
@@ -57,6 +67,7 @@ class Grid extends React.Component{
 
     render() {
         const { showModalPrices, prices } = this.props
+        const { url_key } = this.state
         // const prices = [{id:1, price:700, dateChange:'2019-07-10'}, {id:2, price:500, dateChange:'2019-07-20'}]
         if (!this.props.adsIsLoad) {
             return <PreloaderComponent />
@@ -64,9 +75,9 @@ class Grid extends React.Component{
             const { filteredRecords } = this.props
             return(
                 <div>
-                    {showModalPrices
-                        && <ModalPricesComponent items={prices.items}/>
-                    }
+                    {/*showModalPrices
+                        && <ModalPricesComponent items={prices[url_key]}/>
+                    */}
                     <TableComponent
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
@@ -86,7 +97,7 @@ const mapStateToProps = (state) => {
          adsIsLoad: state.ads.adsIsLoad,
          filteredRecords: state.ads.filteredRecords,
          showModalPrices: state.prices.showModalPrices,
-         prices: state.prices.prices,
+         prices: state.prices.items,
     }
 }
 

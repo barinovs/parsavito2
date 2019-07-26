@@ -29,10 +29,17 @@ ModalPricesComponent.propTypes = {
         price:      PropTypes.string.isRequired,
         dateChange: PropTypes.string.isRequired
     }))
+
+    // items: PropTypes.object
+
 }
 
 ModalPricesComponent.defaultProps = {
-    items: [{id:0, price:"Данные не переданы", dateChange:"-"}]
+    items: {
+        "url": [
+            {id:0, price:"Данные не переданы", dateChange:"-"}
+        ]
+    }
 }
 
 export default ModalPricesComponent
