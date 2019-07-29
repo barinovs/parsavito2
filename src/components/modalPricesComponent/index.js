@@ -4,7 +4,7 @@ import PropTypes, { arrayOf, shape, number, string } from 'prop-types'
 
 import './index.css'
 
-function ModalPricesComponent ({items}) {
+function ModalPricesComponent ({items, closePrices}) {
     const divHeight = items.length * 30
     return(
         <div className="modalPrices">
@@ -20,7 +20,7 @@ function ModalPricesComponent ({items}) {
                 }
                 </tbody>
             </table>
-            <button >Закрыть</button>
+            <button onClick={closePrices}>Закрыть</button>
        </div>
    )
 }

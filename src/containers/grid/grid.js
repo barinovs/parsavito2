@@ -20,16 +20,7 @@ class Grid extends React.Component{
         this.getAllAds = this.getAllAds.bind(this)
         this.filterNameChange = this.filterNameChange.bind(this)
         this.showPrices = this.showPrices.bind(this)
-        this.id_avitoInState = this.id_avitoInState.bind(this)
-    }
-
-    id_avitoInState(id_avito) {
-        const statePrices = this.props.prices
-        if (statePrices[id_avito]) {
-            return true
-        }else{
-            return false
-        }
+        this.closePrices = this.closePrices.bind(this)
     }
 
     showPrices(e) {
@@ -68,6 +59,10 @@ class Grid extends React.Component{
 
     }
 
+    closePrices() {
+        this.props.setStateModalShowPrices(false)
+    }
+
     getAllAds() {
 
     }
@@ -97,7 +92,10 @@ class Grid extends React.Component{
             return(
                 <div>
                     {showModalPrices
-                        && <ModalPricesComponent items={prices}/>
+                        && <ModalPricesComponent
+                                items={prices}
+                                closePrices={this.closePrices}
+                            />
                     }
                     <TableComponent
                         records={filteredRecords}
