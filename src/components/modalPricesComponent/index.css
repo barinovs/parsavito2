@@ -1,6 +1,5 @@
 .modalPrices {
     width: 200px;
-    height: 200px;
     background-color: pink;
     position: fixed;
     left: 50%;
@@ -9,7 +8,14 @@
     margin-right: -100px;
 }
 
-.item {
-    width: 50px;
-    margin: 5px auto;
+table {
+    border-spacing: 7px 11px
+}
+
+.tr {
+    height: 50px;
+}
+
+td {
+    padding: 10px;
 }

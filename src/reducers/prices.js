@@ -20,7 +20,7 @@ const initialState = {
 
 const prices = (state = initialState, action) => {
 
-    const { type, showModalPrices, url, items } = action
+    const { type, showModalPrices, id_avito, items } = action
     switch (type) {
         case ACTION_SET_STATE_MODAL_SHOW_PRICES: {
             return {...state,
@@ -31,7 +31,7 @@ const prices = (state = initialState, action) => {
     switch (type) {
         case ACTION_GET_PRICES: {
             return {...state,
-                        [url]:items
+                        [id_avito]:items
                     }
         }
     }

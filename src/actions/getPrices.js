@@ -1,10 +1,10 @@
 import { ACTION_GET_PRICES } from '../constants'
 
 
-export default function getPrices(url, items){
+export default function getPrices(id_avito, items){
     return {
         type: ACTION_GET_PRICES,
-        url: url,
+        id_avito: id_avito,
         items: items
     }
 }

@@ -13,37 +13,58 @@ class Grid extends React.Component{
         super(props)
         this.state = {
             records:this.props.records,
-            url_key: "key"
+            url_key: "key",
+            id_avito: "key",
+            prices:[]
         }
         this.getAllAds = this.getAllAds.bind(this)
         this.filterNameChange = this.filterNameChange.bind(this)
         this.showPrices = this.showPrices.bind(this)
+        this.id_avitoInState = this.id_avitoInState.bind(this)
+    }
+
+    id_avitoInState(id_avito) {
+        const statePrices = this.props.prices
+        if (statePrices[id_avito]) {
+            return true
+        }else{
+            return false
+        }
     }
 
     showPrices(e) {
+
         const { setStateModalShowPrices, showModalPrices, getPrices } = this.props
         const ad_url = e.target.attributes.url.value
+        const id_avito = e.target.attributes.id_avito.value
 
+        // setStateModalShowPrices(!showModalPrices)
+        setStateModalShowPrices(true)
 
+        const statePrices = this.props.prices
+        let prices = []
+        if (statePrices[id_avito]) {
+            console.log("id_avito in " + id_avito)
+            prices = statePrices[id_avito]
+        }else{
+            console.log("id_avito not in " + id_avito);
 
-        console.log('showPrices', e.target.attributes.url.value)
+            const url = API_ENDPOINT + 'getPrices.php?url=' + ad_url
 
-        setStateModalShowPrices(!showModalPrices)
+            axios.get(url, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => {
+                getPrices(id_avito, response.data)
+                this.setState({prices: response.data})
+            })
+        }
 
-        // getPrices(url, ['bla', 'blyad'])
-
-        const url = API_ENDPOINT + 'getPrices.php?url=' + ad_url
-
-        axios.get(url, {
-            headers: { 'Content-Type': 'application/json' }
+        this.setState({
+            id_avito,
+            prices
         })
-        .then(response => {
-            getPrices(ad_url, response.data)
-        })
 
-        // this.setState({
-        //     url_key: ad_url
-        // })
 
     }
 
@@ -66,8 +87,8 @@ class Grid extends React.Component{
     }
 
     render() {
-        const { showModalPrices, prices } = this.props
-        const { url_key } = this.state
+        const { showModalPrices } = this.props
+        const { url_key, prices } = this.state
         // const prices = [{id:1, price:700, dateChange:'2019-07-10'}, {id:2, price:500, dateChange:'2019-07-20'}]
         if (!this.props.adsIsLoad) {
             return <PreloaderComponent />
@@ -75,9 +96,9 @@ class Grid extends React.Component{
             const { filteredRecords } = this.props
             return(
                 <div>
-                    {/*showModalPrices
-                        && <ModalPricesComponent items={prices[url_key]}/>
-                    */}
+                    {showModalPrices
+                        && <ModalPricesComponent items={prices}/>
+                    }
                     <TableComponent
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
@@ -97,7 +118,7 @@ const mapStateToProps = (state) => {
          adsIsLoad: state.ads.adsIsLoad,
          filteredRecords: state.ads.filteredRecords,
          showModalPrices: state.prices.showModalPrices,
-         prices: state.prices.items,
+         prices: state.prices,
     }
 }
 
