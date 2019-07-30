@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import axios from 'axios'
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -9,6 +10,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import { SelectComponent } from '../../components'
+import { getCities } from '../../actions'
+
+import { API_ENDPOINT } from '../../constants'
 
 import './filter.css'
 
@@ -22,7 +26,9 @@ class Filter extends React.Component{
         this.state = {
           show: true,
           description: "",
-          adQueryURL: ""
+          adQueryURL: "",
+          arrPrices:[],
+          cities: []
         }
 
     }
@@ -36,6 +42,19 @@ class Filter extends React.Component{
             }
             arrPrices.push(_obj)
         }
+
+        const { getCities } = this.props
+
+        const url = API_ENDPOINT + 'getCities.php'
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getCities(response.data)
+            this.setState({cities: response.data})
+        })
+
         this.setState({arrPrices})
     }
 
@@ -52,7 +71,7 @@ class Filter extends React.Component{
     }
 
     render() {
-        const { arrPrices } = this.state
+        const { arrPrices, cities } = this.state
         return(
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
@@ -62,11 +81,11 @@ class Filter extends React.Component{
                   <Form>
                       <Form.Label>Город</Form.Label>
                         <Form.Control as="select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            {
+                                cities.map( (item, idx) =>
+                                    <option key={idx}>{item.city}</option>
+                                )
+                            }
                         </Form.Control>
 
 
@@ -130,10 +149,9 @@ class Filter extends React.Component{
 //     }
 // }
 //
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         : bindActionCreators(, dispatch)
-//     }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Filter)
-export default connect()(Filter)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getCities: bindActionCreators(getCities, dispatch)
+    }
+}
+export default connect(null, mapDispatchToProps)(Filter)
