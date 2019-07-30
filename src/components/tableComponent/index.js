@@ -2,6 +2,8 @@ import React from 'react'
 
 import Table from 'react-bootstrap/Table'
 
+import './index.css'
+
 class TableComponent extends React.Component{
     constructor(props) {
         super(props)
@@ -10,7 +12,7 @@ class TableComponent extends React.Component{
     render() {
         const { records, filterNameChange } = this.props
         return(
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="dark" className="table-fixed-head">
                 <thead>
                   <tr>
                     <th>Город</th>
