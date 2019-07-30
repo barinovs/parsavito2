@@ -83,7 +83,7 @@ class Filter extends React.Component{
                         <Form.Control as="select">
                             {
                                 cities.map( (item, idx) =>
-                                    <option key={idx}>{item.city}</option>
+                                    <option key={idx} value={item.city}>{item.city}</option>
                                 )
                             }
                         </Form.Control>
