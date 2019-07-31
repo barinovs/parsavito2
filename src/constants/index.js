@@ -13,7 +13,10 @@ import {DEFAULT_ITEM_PER_PAGE,
         DEFAULT_ORDER_TYPE,
         DEFAULT_PAGE,
         DEFAULT_SEARCH,
-        DEFAULT_AD_QUERY_ID} from './pagination'
+        DEFAULT_AD_QUERY_ID,
+        DEFAULT_CITY,
+        DEFAULT_MINPRICE,
+        DEFAULT_MAXPRICE} from './pagination'
 
 export { API_ENDPOINT,
          ACTION_GET_ALL_ADS,
@@ -29,5 +32,8 @@ export { API_ENDPOINT,
          DEFAULT_SEARCH,
          DEFAULT_AD_QUERY_ID,
          ACTION_SET_STATE_MODAL_FILTER,
-         ACTION_GET_CITIES
+         ACTION_GET_CITIES,
+         DEFAULT_CITY,
+         DEFAULT_MINPRICE,
+         DEFAULT_MAXPRICE
      }
