@@ -37,7 +37,10 @@ class TableComponent extends React.Component{
                                     <td>{item.city}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
                                     <td>{item.price}</td>
-                                    <td>{item.phone_number}</td>
+                                    <td>
+                                        <div>{item.phone_number}</div>
+                                        <div>{item.seller_name}</div>
+                                    </td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>
                                    </tr>
