@@ -9,7 +9,7 @@ const initialState = {
 
 const filter = (state = initialState, action) => {
 
-    const { type, cities } = action
+    const { type, cities, showModalFilter } = action
     switch (type) {
         case ACTION_SET_STATE_MODAL_FILTER: {
             return {...state,

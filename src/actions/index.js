@@ -5,6 +5,7 @@ import { setStateModalAddAdQuery } from './setStateModalAddAdQuery'
 import { setAdsIsLoad } from './setAdsIsLoad'
 import { refreshFilteredRecords } from './refreshFilteredRecords'
 import { getCities } from './getCities'
+import { setStateModalFilter } from './setStateModalFilter'
 
 export { getAllAds,
          getAdQueries,
@@ -12,4 +13,5 @@ export { getAllAds,
          setStateModalAddAdQuery,
          setAdsIsLoad,
          refreshFilteredRecords,
-         getCities}
+         getCities,
+         setStateModalFilter}

@@ -31,7 +31,7 @@ class Filter extends React.Component{
         this.changeMaxPrice = this.changeMaxPrice.bind(this)
 
         this.state = {
-          show: true,
+          show: false,
           description: "",
           adQueryURL: "",
           arrPrices:[],
@@ -54,7 +54,7 @@ class Filter extends React.Component{
             arrPrices.push(_obj)
         }
 
-        const { getCities } = this.props
+        const { getCities, showModalFilter } = this.props
 
         const url = API_ENDPOINT + 'getCities.php'
 
@@ -66,7 +66,7 @@ class Filter extends React.Component{
             this.setState({cities: response.data})
         })
 
-        this.setState({arrPrices})
+        this.setState({arrPrices, show: showModalFilter})
     }
 
     handleClose() {
@@ -201,11 +201,11 @@ class Filter extends React.Component{
 
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//          : state.
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+         showModalFilter: state.showModalFilter
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
