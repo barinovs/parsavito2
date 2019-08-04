@@ -3,3 +3,5 @@ dist/
 package.json
 .gitignore
 yarn.lock
+package.json
+package-lock.json
