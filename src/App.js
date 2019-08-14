@@ -17,7 +17,8 @@ class App extends Component{
                     <Navbar.Brand href="#home"> Парсер Avito</Navbar.Brand>
                     <Navbar.Brand href="#"><Display /></Navbar.Brand>
                 </Navbar>
-                <AdQueries />
+                {/* <AdQueries /> */}
+                <Filter />
                 <Grid />
             </div>
         )

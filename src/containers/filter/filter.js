@@ -8,10 +8,11 @@ import { getAllAds, setAdsIsLoad, refreshFilteredRecords } from '../../actions'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import { SelectComponent } from '../../components'
+import { SelectComponent, AddButtonComponent } from '../../components'
 import { getCities } from '../../actions'
 
 import { API_ENDPOINT } from '../../constants'
@@ -29,6 +30,7 @@ class Filter extends React.Component{
         this.changeCity = this.changeCity.bind(this)
         this.changeMinPrice = this.changeMinPrice.bind(this)
         this.changeMaxPrice = this.changeMaxPrice.bind(this)
+        this.showFilter = this.showFilter.bind(this)
 
         this.state = {
           show: false,
@@ -126,67 +128,95 @@ class Filter extends React.Component{
         })
     }
 
+    showFilter() {
+        this.setState({
+            show: true
+        })
+    }
+
     render() {
         const { arrPrices, cities } = this.state
         return(
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                  <Modal.Title>Параметры фильтра</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                  <Form>
-                      <Form.Label>Город</Form.Label>
-                        <Form.Control as="select" onChange={this.changeCity}>
-                            {
-                                cities.map( (item, idx) =>
-                                    <option key={idx} value={item.city}>{item.city}</option>
-                                )
-                            }
-                        </Form.Control>
+            <div>
+                <Container >
+                  <Row>
+                    <Col sm>
+                            <AddButtonComponent
+                                value="Фильтр"
+                                onClick={this.showFilter}
+                            />
+
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Город
+                        </Row>
+                        <Row>
+                            ...
+                        </Row>
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Цена
+                        </Row>
+                        <Row>
+                            от ... до ...
+                        </Row>
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Название
+                        </Row>
+                        <Row>
+                            ...
+                        </Row>
+                    </Col>
+                  </Row>
+                </Container>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                  <Modal.Header closeButton>
+                      <Modal.Title>Параметры фильтра</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                      <Form>
+                          <Form.Label>Город</Form.Label>
+                              <Form.Control as="select" onChange={this.changeCity}>
+                                  {
+                                      cities.map( (item, idx) =>
+                                          <option key={idx} value={item.city}>{item.city}</option>
+                                      )
+                                  }
+                              </Form.Control>
 
 
-                      <Form.Label>Объявлений на странице</Form.Label>
-                      <Form.Control
-                          placeholder=""
-                          onChange={this.changeItemPerPage}
-                      />
-
-
-                    <Row>
-                        <Col><Form.Label>Цена</Form.Label></Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                          <SelectComponent
-                              arrPrices={arrPrices}
-                              label="От"
-                              isFirst={true}
-                              changeValue={this.changeMinPrice}
+                          <Form.Label>Объявлений на странице</Form.Label>
+                          <Form.Control
+                              placeholder=""
+                              onChange={this.changeItemPerPage}
                           />
-                      </Col>
-                      <Col>
-                          <SelectComponent
-                              arrPrices={arrPrices}
-                              label="До"
-                              isFirst={false}
-                              changeValue={this.changeMaxPrice}
-                          />
-                      </Col>
-                    </Row>
 
 
-
-
-                    {/*
-                    <Form.Group controlId="formBasicChecbox">
-                      <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                      Submit
-                    </Button>
-                    */}
-                  </Form>
-              </Modal.Body>
+                        <Row>
+                            <Col><Form.Label>Цена</Form.Label></Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                              <SelectComponent
+                                  arrPrices={arrPrices}
+                                  label="От"
+                                  isFirst={true}
+                              />
+                          </Col>
+                          <Col>
+                              <SelectComponent
+                                  arrPrices={arrPrices}
+                                  label="До"
+                                  isFirst={false}
+                              />
+                          </Col>
+                        </Row>
+                      </Form>
+                  </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
                   Отмена
@@ -196,6 +226,7 @@ class Filter extends React.Component{
                 </Button>
               </Modal.Footer>
             </Modal>
+        </div>
         )
     }
 
