@@ -5,10 +5,11 @@ import { bindActionCreators } from 'redux'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-import { SelectComponent } from '../../components'
+import { SelectComponent, AddButtonComponent } from '../../components'
 
 import './filter.css'
 
@@ -18,9 +19,10 @@ class Filter extends React.Component{
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.changeItemPerPage = this.changeItemPerPage.bind(this)
+        this.showFilter = this.showFilter.bind(this)
 
         this.state = {
-          show: true,
+          show: false,
           description: "",
           adQueryURL: ""
         }
@@ -51,74 +53,117 @@ class Filter extends React.Component{
 
     }
 
+    showFilter() {
+        this.setState({
+            show: true
+        })
+    }
+
     render() {
         const { arrPrices } = this.state
         return(
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                  <Modal.Title>Параметры фильтра</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                  <Form>
-                      <Form.Label>Город</Form.Label>
-                        <Form.Control as="select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </Form.Control>
+            <div>
+                <Container >
+                  <Row>
+                    <Col sm>
+                            <AddButtonComponent
+                                value="Фильтр"
+                                onClick={this.showFilter}
+                            />
+
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Город
+                        </Row>
+                        <Row>
+                            ...
+                        </Row>
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Цена
+                        </Row>
+                        <Row>
+                            от ... до ...
+                        </Row>
+                    </Col>
+                    <Col sm>
+                        <Row>
+                            Название
+                        </Row>
+                        <Row>
+                            ...
+                        </Row>
+                    </Col>
+                  </Row>
+                </Container>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                  <Modal.Header closeButton>
+                      <Modal.Title>Параметры фильтра</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                      <Form>
+                          <Form.Label>Город</Form.Label>
+                            <Form.Control as="select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </Form.Control>
 
 
-                      <Form.Label>Объявлений на странице</Form.Label>
-                      <Form.Control
-                          placeholder=""
-                          onChange={this.changeItemPerPage}
-                      />
-
-
-                    <Row>
-                        <Col><Form.Label>Цена</Form.Label></Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                          <SelectComponent
-                              arrPrices={arrPrices}
-                              label="От"
-                              isFirst={true}
+                          <Form.Label>Объявлений на странице</Form.Label>
+                          <Form.Control
+                              placeholder=""
+                              onChange={this.changeItemPerPage}
                           />
-                      </Col>
-                      <Col>
-                          <SelectComponent
-                              arrPrices={arrPrices}
-                              label="До"
-                              isFirst={false}
-                          />
-                      </Col>
-                    </Row>
+
+
+                        <Row>
+                            <Col><Form.Label>Цена</Form.Label></Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                              <SelectComponent
+                                  arrPrices={arrPrices}
+                                  label="От"
+                                  isFirst={true}
+                              />
+                          </Col>
+                          <Col>
+                              <SelectComponent
+                                  arrPrices={arrPrices}
+                                  label="До"
+                                  isFirst={false}
+                              />
+                          </Col>
+                        </Row>
 
 
 
 
-                    {/*
-                    <Form.Group controlId="formBasicChecbox">
-                      <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                      Submit
+                        {/*
+                        <Form.Group controlId="formBasicChecbox">
+                          <Form.Check type="checkbox" label="Check me out" />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                          Submit
+                        </Button>
+                        */}
+                      </Form>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={this.handleClose}>
+                      Отмена
                     </Button>
-                    */}
-                  </Form>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
-                  Отмена
-                </Button>
-                <Button variant="primary" onClick={this.saveAdQuery}>
-                  Сохранить
-                </Button>
-              </Modal.Footer>
-            </Modal>
+                    <Button variant="primary" onClick={this.saveAdQuery}>
+                      Сохранить
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+            </div>
         )
     }
 
