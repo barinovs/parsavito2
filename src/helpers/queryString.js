@@ -3,13 +3,25 @@ import { DEFAULT_ITEM_PER_PAGE,
         DEFAULT_ORDER_TYPE,
         DEFAULT_PAGE,
         DEFAULT_SEARCH,
-        DEFAULT_AD_QUERY_ID } from './constants';
+        DEFAULT_AD_QUERY_ID,
+        DEFAULT_CITY,
+        DEFAULT_MINPRICE,
+        DEFAULT_MAXPRICE } from '../constants';
 
-export function parseQueryString(parameters = {})
+export default function parseQueryString(parameters = {})
 {
     let queryString = '?';
-    const itemPerPage = (parameters.itemPerPage != null) ? parameters.itemPerPage : DEFAULT_ITEM_PER_PAGE;
 
+    const city = (parameters.city != null) ? parameters.city : DEFAULT_CITY;
+    queryString += 'city=' + city + '&';
+
+    const minPrice = (parameters.minPrice != null) ? parameters.minPrice : DEFAULT_MINPRICE;
+    queryString += 'minPrice=' + minPrice + '&';
+
+    const maxPrice = (parameters.maxPrice != null) ? parameters.maxPrice : DEFAULT_MAXPRICE;
+    queryString += 'maxPrice=' + maxPrice + '&';
+
+    const itemPerPage = (parameters.itemPerPage != null) ? parameters.itemPerPage : DEFAULT_ITEM_PER_PAGE;
     queryString += 'item_per_page=' + itemPerPage + '&';
 
     const orderBy = (parameters.orderBy != null) ? parameters.orderBy : DEFAULT_ORDER_BY;

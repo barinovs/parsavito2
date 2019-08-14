@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import axios from 'axios'
+
+import { getAllAds, setAdsIsLoad, refreshFilteredRecords } from '../../actions'
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -9,6 +12,10 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import { SelectComponent } from '../../components'
+import { getCities } from '../../actions'
+
+import { API_ENDPOINT } from '../../constants'
+import { parseQueryString } from '../../helpers'
 
 import './filter.css'
 
@@ -18,11 +25,21 @@ class Filter extends React.Component{
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.changeItemPerPage = this.changeItemPerPage.bind(this)
+        this.setFilter = this.setFilter.bind(this)
+        this.changeCity = this.changeCity.bind(this)
+        this.changeMinPrice = this.changeMinPrice.bind(this)
+        this.changeMaxPrice = this.changeMaxPrice.bind(this)
 
         this.state = {
-          show: true,
+          show: false,
           description: "",
-          adQueryURL: ""
+          adQueryURL: "",
+          arrPrices:[],
+          cities: [],
+          itemPerPage: 30,
+          city: "",
+          minPrice: 0,
+          maxPrice: 5000000
         }
 
     }
@@ -36,7 +53,20 @@ class Filter extends React.Component{
             }
             arrPrices.push(_obj)
         }
-        this.setState({arrPrices})
+
+        const { getCities, showModalFilter } = this.props
+
+        const url = API_ENDPOINT + 'getCities.php'
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getCities(response.data)
+            this.setState({cities: response.data})
+        })
+
+        this.setState({arrPrices, show: showModalFilter})
     }
 
     handleClose() {
@@ -47,12 +77,57 @@ class Filter extends React.Component{
       this.setState({ show: true });
     }
 
-    changeItemPerPage() {
+    changeItemPerPage(e) {
+        this.setState({
+            itemPerPage: parseInt(e.target.value)
+        })
+    }
 
+    changeCity(e) {
+        this.setState({
+            city: e.target.value
+        })
+    }
+
+    changeMinPrice(e) {
+        this.setState({
+            minPrice: e.target.value
+        })
+    }
+
+    changeMaxPrice(e) {
+        this.setState({
+            maxPrice: e.target.value
+        })
+    }
+
+    setFilter() {
+        const { getAllAds, refreshFilteredRecords } = this.props
+        const { city, itemPerPage, minPrice, maxPrice } = this.state
+
+        const parameters = {
+            city,
+            itemPerPage,
+            minPrice,
+            maxPrice
+        }
+
+        const queryString = parseQueryString(parameters)
+
+        const url = API_ENDPOINT + 'getData.php' + queryString
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getAllAds(response.data)
+            setAdsIsLoad(true),
+            refreshFilteredRecords(response.data.records)
+        })
     }
 
     render() {
-        const { arrPrices } = this.state
+        const { arrPrices, cities } = this.state
         return(
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
@@ -61,12 +136,12 @@ class Filter extends React.Component{
               <Modal.Body>
                   <Form>
                       <Form.Label>Город</Form.Label>
-                        <Form.Control as="select">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <Form.Control as="select" onChange={this.changeCity}>
+                            {
+                                cities.map( (item, idx) =>
+                                    <option key={idx} value={item.city}>{item.city}</option>
+                                )
+                            }
                         </Form.Control>
 
 
@@ -86,6 +161,7 @@ class Filter extends React.Component{
                               arrPrices={arrPrices}
                               label="От"
                               isFirst={true}
+                              changeValue={this.changeMinPrice}
                           />
                       </Col>
                       <Col>
@@ -93,6 +169,7 @@ class Filter extends React.Component{
                               arrPrices={arrPrices}
                               label="До"
                               isFirst={false}
+                              changeValue={this.changeMaxPrice}
                           />
                       </Col>
                     </Row>
@@ -114,7 +191,7 @@ class Filter extends React.Component{
                 <Button variant="secondary" onClick={this.handleClose}>
                   Отмена
                 </Button>
-                <Button variant="primary" onClick={this.saveAdQuery}>
+                <Button variant="primary" onClick={this.setFilter}>
                   Сохранить
                 </Button>
               </Modal.Footer>
@@ -124,16 +201,18 @@ class Filter extends React.Component{
 
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//          : state.
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         : bindActionCreators(, dispatch)
-//     }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Filter)
-export default connect()(Filter)
+const mapStateToProps = (state) => {
+    return {
+         showModalFilter: state.showModalFilter
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getCities: bindActionCreators(getCities, dispatch),
+        getAllAds: bindActionCreators(getAllAds, dispatch),
+        setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch),
+        refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
+    }
+}
+export default connect(null, mapDispatchToProps)(Filter)

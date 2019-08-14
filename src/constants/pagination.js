@@ -6,3 +6,6 @@ export const DEFAULT_PAGE = 1;
 export const DEFAULT_AD_QUERY_ID = 1;
 export const ORDER_TYPE_ASC = 'asc';
 export const ORDER_TYPE_DESC = 'desc';
+export const DEFAULT_CITY = '%%';
+export const DEFAULT_MINPRICE = 0;
+export const DEFAULT_MAXPRICE = 5000000;

@@ -7,7 +7,8 @@ import { getAdQueries,
          setStateModalAddAdQuery,
          getAllAds,
          setAdsIsLoad,
-         refreshFilteredRecords } from '../../actions'
+         refreshFilteredRecords,
+         setStateModalFilter} from '../../actions'
 import { API_ENDPOINT } from '../../constants'
 import { DropDownComponent,
          AddButtonComponent,
@@ -25,6 +26,7 @@ class AdQueries extends React.Component{
         this.changeAdQuery = this.changeAdQuery.bind(this)
         this.dropdownClick = this.dropdownClick.bind(this)
         this.getAdsById = this.getAdsById.bind(this)
+        this.showFilter = this.showFilter.bind(this)
     }
 
     componentDidMount() {
@@ -96,6 +98,10 @@ class AdQueries extends React.Component{
 
     }
 
+    showFilter() {
+        this.props.setStateModalFilter(true)
+    }
+
     render() {
         const { adQueries } = this.props
         const { currentAdQuery, setStateModalAddAdQuery, showModal } = this.props
@@ -126,6 +132,13 @@ class AdQueries extends React.Component{
                             onClick = {this.newAdQuery}
                         />
                     </li>
+                    <li>
+                        <AddButtonComponent
+                            variant = "success"
+                            onClick = {this.showFilter}
+                            value="Фильтр"
+                        />
+                    </li>
                 </ul>
             </div>
         )
@@ -149,6 +162,7 @@ const mapDispatchToProps = (dispatch) => {
         getAllAds: bindActionCreators(getAllAds, dispatch),
         setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch),
         refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
+        setStateModalFilter: bindActionCreators(setStateModalFilter, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AdQueries)

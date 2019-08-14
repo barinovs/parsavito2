@@ -1,3 +1,3 @@
-import { parseQueryString } from './queryString.js'
+import parseQueryString from './queryString'
 
 export { parseQueryString }
