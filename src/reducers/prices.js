@@ -4,7 +4,7 @@ import { ACTION_SET_STATE_MODAL_SHOW_PRICES,
 
 
 const initialState = {
-    showModalPrices: true,
+    showModalPrices: false,
 
 
         "key":
