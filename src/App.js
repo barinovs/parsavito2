@@ -18,7 +18,6 @@ class App extends Component{
                     <Navbar.Brand href="#"><Display /></Navbar.Brand>
                 </Navbar>
                 <AdQueries />
-                <Filter />
                 <Grid />
             </div>
         )
