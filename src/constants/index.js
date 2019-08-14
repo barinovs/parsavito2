@@ -6,7 +6,9 @@ import { ACTION_GET_ALL_ADS,
          ACTION_SET_ADS_IS_LOAD,
          ACTION_REFRESH_FILTERED_RECORDS,
          ACTION_SET_STATE_MODAL_FILTER,
-         ACTION_GET_CITIES} from './actionTypes'
+         ACTION_GET_CITIES,
+         ACTION_SET_STATE_MODAL_SHOW_PRICES,
+         ACTION_GET_PRICES     } from './actionTypes'
 
 import {DEFAULT_ITEM_PER_PAGE,
         DEFAULT_ORDER_BY,
@@ -35,5 +37,7 @@ export { API_ENDPOINT,
          ACTION_GET_CITIES,
          DEFAULT_CITY,
          DEFAULT_MINPRICE,
-         DEFAULT_MAXPRICE
+         DEFAULT_MAXPRICE,
+         ACTION_SET_STATE_MODAL_SHOW_PRICES,
+         ACTION_GET_PRICES
      }

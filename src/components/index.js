@@ -6,6 +6,7 @@ import TableComponent from './tableComponent'
 import LoadingComponent from './tableComponent'
 import PreloaderComponent from './loadingComponent'
 import SelectComponent from './selectComponent'
+import ModalPricesComponent from './modalPricesComponent'
 
 
 export { DropDownComponent,
@@ -14,5 +15,6 @@ export { DropDownComponent,
          AddAdQueryComponent,
          TableComponent,
          PreloaderComponent,
-         SelectComponent
+         SelectComponent,
+         ModalPricesComponent
         }

@@ -1,0 +1,21 @@
+.modalPrices {
+    width: 200px;
+    background-color: pink;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-right: -100px;
+}
+
+table {
+    border-spacing: 7px 11px
+}
+
+.tr {
+    height: 50px;
+}
+
+td {
+    padding: 10px;
+}

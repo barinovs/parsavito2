@@ -246,4 +246,4 @@ const mapDispatchToProps = (dispatch) => {
         refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
     }
 }
-export default connect(null, mapDispatchToProps)(Filter)
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

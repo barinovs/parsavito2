@@ -10,7 +10,7 @@ class TableComponent extends React.Component{
     }
 
     render() {
-        const { records, filterNameChange } = this.props
+        const { records, filterNameChange, showPrices } = this.props
         return(
             <Table striped bordered hover variant="dark" className="table-fixed-head">
                 <thead>
@@ -36,11 +36,14 @@ class TableComponent extends React.Component{
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
-                                    <td>{item.price}</td>
-                                    <td>
-                                        <div>{item.phone_number}</div>
-                                        <div>{item.seller_name}</div>
+                                    <td
+                                        url={item.url}
+                                        id_avito={item.id_avito}
+                                        onClick={showPrices}
+                                    >
+                                        {item.price}
                                     </td>
+                                    <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
                                     <td>{item.yearIssue}</td>
                                    </tr>
