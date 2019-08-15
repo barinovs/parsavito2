@@ -41,7 +41,8 @@ class Filter extends React.Component{
           itemPerPage: 30,
           city: "",
           minPrice: 0,
-          maxPrice: 5000000
+          maxPrice: 0,
+          name: ""
         }
 
     }
@@ -80,9 +81,11 @@ class Filter extends React.Component{
     }
 
     changeItemPerPage(e) {
-        this.setState({
-            itemPerPage: parseInt(e.target.value)
-        })
+        const re = /^[0-9\b]+$/;
+
+        if (e.target.value === '' || re.test(e.target.value)) {
+           this.setState({itemPerPage: e.target.value})
+        }
     }
 
     changeCity(e) {
@@ -126,6 +129,10 @@ class Filter extends React.Component{
             setAdsIsLoad(true),
             refreshFilteredRecords(response.data.records)
         })
+
+        this.setState({
+            show: false
+        })
     }
 
     showFilter() {
@@ -135,7 +142,7 @@ class Filter extends React.Component{
     }
 
     render() {
-        const { arrPrices, cities } = this.state
+        const { arrPrices, cities, itemPerPage, city, name, minPrice, maxPrice } = this.state
         return(
             <div>
                 <Container >
@@ -152,7 +159,7 @@ class Filter extends React.Component{
                             Город
                         </Row>
                         <Row>
-                            ...
+                            {city}
                         </Row>
                     </Col>
                     <Col sm>
@@ -160,7 +167,7 @@ class Filter extends React.Component{
                             Цена
                         </Row>
                         <Row>
-                            от ... до ...
+                            от {minPrice} до {maxPrice}
                         </Row>
                     </Col>
                     <Col sm>
@@ -168,7 +175,7 @@ class Filter extends React.Component{
                             Название
                         </Row>
                         <Row>
-                            ...
+                            {name}
                         </Row>
                     </Col>
                   </Row>
@@ -181,6 +188,7 @@ class Filter extends React.Component{
                       <Form>
                           <Form.Label>Город</Form.Label>
                               <Form.Control as="select" onChange={this.changeCity}>
+                                  <option value={""}></option>
                                   {
                                       cities.map( (item, idx) =>
                                           <option key={idx} value={item.city}>{item.city}</option>
@@ -193,6 +201,7 @@ class Filter extends React.Component{
                           <Form.Control
                               placeholder=""
                               onChange={this.changeItemPerPage}
+                              value={itemPerPage}
                           />
 
 
@@ -205,6 +214,7 @@ class Filter extends React.Component{
                                   arrPrices={arrPrices}
                                   label="От"
                                   isFirst={true}
+                                  changeValue={this.changeMinPrice}
                               />
                           </Col>
                           <Col>
@@ -212,6 +222,7 @@ class Filter extends React.Component{
                                   arrPrices={arrPrices}
                                   label="До"
                                   isFirst={false}
+                                  changeValue={this.changeMaxPrice}
                               />
                           </Col>
                         </Row>

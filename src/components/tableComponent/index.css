@@ -1,4 +1,4 @@
-.table-fixed-head {
+/* .table-fixed-head {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -27,4 +27,4 @@
   overflow: auto;
   width: 100%;
   height: calc(100vh - 30px);
-}
+} */
