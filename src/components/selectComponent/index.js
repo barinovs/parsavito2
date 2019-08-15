@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-function SelectComponent({ arrPrices, label, isFirst, changeValue }) {
+function SelectComponent({ arrPrices, label, isFirst, changeValue, value }) {
     let defValue = ''
     // if (!isFirst) {
     //     arrPrices = arrPrices.reverse()
@@ -14,7 +14,12 @@ function SelectComponent({ arrPrices, label, isFirst, changeValue }) {
     return(
        <div>
            <Form.Label inline="true">{label}</Form.Label>
-           <Form.Control inline="true" as="select" onChange={changeValue}>
+           <Form.Control
+               inline="true"
+               as="select"
+               onChange={changeValue}
+               value={value}
+            >
                {
 
                    arrPrices.map( (item, idx) =>
@@ -36,14 +41,16 @@ SelectComponent.propTypes = {
     label: PropTypes.string,
     arrPrices: PropTypes.array,
     isFirst: PropTypes.bool,
-    changeValue: PropTypes.func
+    changeValue: PropTypes.func,
+    value: PropTypes.string
 }
 
 SelectComponent.defaultProps = {
     label: '',
     arrPrices: [{value:0, text:'0'}],
     isFirst: true,
-    changeValue: () => {}
+    changeValue: () => {},
+    value: '0'
 }
 
 export default SelectComponent

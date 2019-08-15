@@ -31,6 +31,7 @@ class Filter extends React.Component{
         this.changeMinPrice = this.changeMinPrice.bind(this)
         this.changeMaxPrice = this.changeMaxPrice.bind(this)
         this.showFilter = this.showFilter.bind(this)
+        this.addSpaceInNumber = this.addSpaceInNumber.bind(this)
 
         this.state = {
           show: false,
@@ -40,11 +41,15 @@ class Filter extends React.Component{
           cities: [],
           itemPerPage: 30,
           city: "",
-          minPrice: 0,
-          maxPrice: 0,
+          minPrice: '0',
+          maxPrice: '0',
           name: ""
         }
 
+    }
+
+    addSpaceInNumber(num) {
+        return String(num).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
     }
 
     componentWillMount() {
@@ -52,7 +57,7 @@ class Filter extends React.Component{
         for (let i=0; i<=5000000; i+=100000) {
             let _obj = {
                 value: i,
-                text: String(i).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+                text: this.addSpaceInNumber(i)
             }
             arrPrices.push(_obj)
         }
@@ -187,7 +192,11 @@ class Filter extends React.Component{
                   <Modal.Body>
                       <Form>
                           <Form.Label>Город</Form.Label>
-                              <Form.Control as="select" onChange={this.changeCity}>
+                              <Form.Control
+                                  as="select"
+                                  onChange={this.changeCity}
+                                  value={city}
+                              >
                                   <option value={""}></option>
                                   {
                                       cities.map( (item, idx) =>
@@ -215,6 +224,7 @@ class Filter extends React.Component{
                                   label="От"
                                   isFirst={true}
                                   changeValue={this.changeMinPrice}
+                                  value={minPrice}
                               />
                           </Col>
                           <Col>
@@ -223,6 +233,7 @@ class Filter extends React.Component{
                                   label="До"
                                   isFirst={false}
                                   changeValue={this.changeMaxPrice}
+                                  value={maxPrice}
                               />
                           </Col>
                         </Row>
