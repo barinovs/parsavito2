@@ -10,13 +10,21 @@ class TableComponent extends React.Component{
     }
 
     render() {
-        const { records, filterNameChange, showPrices, tableHeaders } = this.props
+        const { records, filterNameChange, showPrices, tableHeaders, sortBy, descending } = this.props
         return(
             <Table striped bordered hover variant="dark" className="table-fixed-head">
                 <thead onClick={this.props._sort}>
                   <tr>{
                           tableHeaders.map( item => {
-                              return <th key={item.field} field={item.field}>{item.name}</th>
+                              return <th key={item.field} field={item.field}>
+                              {
+                                  (item.field === sortBy)
+                                    ? descending
+                                        ? item.name + ' \u2193'
+                                        : item.name + ' \u2191'
+                                    : item.name
+                              }
+                              </th>
 
                           })
                       }

@@ -107,7 +107,7 @@ class Grid extends React.Component{
 
     render() {
         const { showModalPrices } = this.props
-        const { url_key, prices } = this.state
+        const { url_key, prices, sortBy, descending } = this.state
         // const prices = [{id:1, price:700, dateChange:'2019-07-10'}, {id:2, price:500, dateChange:'2019-07-20'}]
         if (!this.props.adsIsLoad) {
             return <PreloaderComponent />
@@ -127,6 +127,8 @@ class Grid extends React.Component{
                         filterNameChange={this.filterNameChange}
                         showPrices={this.showPrices}
                         _sort={this._sort}
+                        descending={descending}
+                        sortBy={sortBy}
                     />
                 </div>
             )
