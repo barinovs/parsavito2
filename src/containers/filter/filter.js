@@ -244,7 +244,7 @@ class Filter extends React.Component{
                   Отмена
                 </Button>
                 <Button variant="primary" onClick={this.setFilter}>
-                  Сохранить
+                  Применить
                 </Button>
               </Modal.Footer>
             </Modal>
