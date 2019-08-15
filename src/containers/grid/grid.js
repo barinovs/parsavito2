@@ -93,15 +93,25 @@ class Grid extends React.Component{
 
         const records = filteredRecords.slice()
         records.sort( (a, b) => {
-            if (!isNumber) {
-                return descending
+            return !isNumber
+                ? descending
                     ? (a[field] < b[field]) ? 1 : -1
                     : (a[field] > b[field]) ? 1 : -1
-            }else{
-                return descending
+                : descending
                     ? (parseInt(a[field]) < parseInt(b[field])) ? 1 : -1
-                    : (parseInt(a[field]) > parseInt(b[field])) ? 1 : -1                    
-            }
+                    : (parseInt(a[field]) > parseInt(b[field])) ? 1 : -1
+
+
+            {/*
+            return
+            !isNumber
+                ? descending
+                    ? (a[field] < b[field]) ? 1 : -1
+                    : (a[field] > b[field]) ? 1 : -1
+                : descending
+                    ? (parseInt(a[field]) < parseInt(b[field])) ? 1 : -1
+                    : (parseInt(a[field]) > parseInt(b[field])) ? 1 : -1
+            */}
 
         })
         refreshFilteredRecords(records)
