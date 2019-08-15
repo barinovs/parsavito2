@@ -1,26 +1,32 @@
 export const TABLE_HEADERS = [
     {
         field: 'city',
-        name: 'Город'
+        name: 'Город',
+        isNumber: false
     },
     {
         field: 'name',
-        name: 'Название'
+        name: 'Название',
+        isNumber: false
     },
     {
         field: 'price',
-        name: 'Цена'
+        name: 'Цена',
+        isNumber: true
     },
     {
         field: 'phone',
-        name: 'Телефон'
+        name: 'Телефон',
+        isNumber: false
     },
     {
         field: 'mileage',
-        name: 'Пробег'
+        name: 'Пробег',
+        isNumber: true
     },
     {
         field: 'yearIssue',
-        name: 'Год выпуска'
+        name: 'Год выпуска',
+        isNumber: true
     }
 ]

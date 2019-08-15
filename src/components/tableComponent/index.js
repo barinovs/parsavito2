@@ -16,7 +16,7 @@ class TableComponent extends React.Component{
                 <thead onClick={this.props._sort}>
                   <tr>{
                           tableHeaders.map( item => {
-                              return <th key={item.field} field={item.field}>
+                              return <th key={item.field} field={item.field} isnumber={item.isNumber.toString()}>
                               {
                                   (item.field === sortBy)
                                     ? descending

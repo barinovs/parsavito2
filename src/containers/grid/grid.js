@@ -86,15 +86,23 @@ class Grid extends React.Component{
 
     _sort(e) {
         const { refreshFilteredRecords, filteredRecords } = this.props
-        // console.log(e.target.getAttribute('field'));
+        // console.log(e.target.getAttribute('isnumber'));
         const field = e.target.getAttribute('field')
+        const isNumber = JSON.parse(e.target.getAttribute('isNumber'))
         const descending = !this.state.descending && field === this.state.sortBy
 
         const records = filteredRecords.slice()
         records.sort( (a, b) => {
-            return descending
-                ? (a[field] < b[field]) ? 1 : -1
-                : (a[field] > b[field]) ? 1 : -1
+            if (!isNumber) {
+                return descending
+                    ? (a[field] < b[field]) ? 1 : -1
+                    : (a[field] > b[field]) ? 1 : -1
+            }else{
+                return descending
+                    ? (parseInt(a[field]) < parseInt(b[field])) ? 1 : -1
+                    : (parseInt(a[field]) > parseInt(b[field])) ? 1 : -1                    
+            }
+
         })
         refreshFilteredRecords(records)
         this.setState({
