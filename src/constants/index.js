@@ -20,6 +20,8 @@ import {DEFAULT_ITEM_PER_PAGE,
         DEFAULT_MINPRICE,
         DEFAULT_MAXPRICE} from './pagination'
 
+import { TABLE_HEADERS } from './tableHeaders'
+
 export { API_ENDPOINT,
          ACTION_GET_ALL_ADS,
          ACTION_GET_AD_QUERIES,
@@ -39,5 +41,6 @@ export { API_ENDPOINT,
          DEFAULT_MINPRICE,
          DEFAULT_MAXPRICE,
          ACTION_SET_STATE_MODAL_SHOW_PRICES,
-         ACTION_GET_PRICES
+         ACTION_GET_PRICES,
+         TABLE_HEADERS
      }

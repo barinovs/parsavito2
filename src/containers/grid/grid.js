@@ -6,7 +6,7 @@ import axios from 'axios'
 import { getAllAds, refreshFilteredRecords, setStateModalShowPrices, getPrices } from '../../actions'
 
 import { TableComponent, PreloaderComponent, ModalPricesComponent } from '../../components'
-import { API_ENDPOINT } from '../../constants'
+import { API_ENDPOINT, TABLE_HEADERS } from '../../constants'
 
 class Grid extends React.Component{
     constructor(props) {
@@ -15,12 +15,15 @@ class Grid extends React.Component{
             records:this.props.records,
             url_key: "key",
             id_avito: "key",
-            prices:[]
+            prices:[],
+            sortBy: null,
+            descending: false
         }
         this.getAllAds = this.getAllAds.bind(this)
         this.filterNameChange = this.filterNameChange.bind(this)
         this.showPrices = this.showPrices.bind(this)
         this.closePrices = this.closePrices.bind(this)
+        this._sort = this._sort.bind(this)
     }
 
     showPrices(e) {
@@ -81,6 +84,27 @@ class Grid extends React.Component{
 
     }
 
+    _sort(e) {
+        const { refreshFilteredRecords, filteredRecords } = this.props
+        // console.log(e.target.getAttribute('field'));
+        const field = e.target.getAttribute('field')
+        const descending = !this.state.descending && field === this.state.sortBy
+
+        const records = filteredRecords.slice()
+        records.sort( (a, b) => {
+            return descending
+                ? (a[field] < b[field]) ? 1 : -1
+                : (a[field] > b[field]) ? 1 : -1
+        })
+        refreshFilteredRecords(records)
+        this.setState({
+            sortBy: field,
+            descending
+        })
+
+
+    }
+
     render() {
         const { showModalPrices } = this.props
         const { url_key, prices } = this.state
@@ -98,9 +122,11 @@ class Grid extends React.Component{
                             />
                     }
                     <TableComponent
+                        tableHeaders={TABLE_HEADERS}
                         records={filteredRecords}
                         filterNameChange={this.filterNameChange}
                         showPrices={this.showPrices}
+                        _sort={this._sort}
                     />
                 </div>
             )

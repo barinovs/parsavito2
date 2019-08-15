@@ -10,11 +10,19 @@ class TableComponent extends React.Component{
     }
 
     render() {
-        const { records, filterNameChange, showPrices } = this.props
+        const { records, filterNameChange, showPrices, tableHeaders } = this.props
         return(
             <Table striped bordered hover variant="dark" className="table-fixed-head">
-                <thead>
-                  <tr>
+                <thead onClick={this.props._sort}>
+                  <tr>{
+                          tableHeaders.map( item => {
+                              return <th key={item.field} field={item.field}>{item.name}</th>
+
+                          })
+                      }
+
+
+                    {/*
                     <th>Город</th>
                     <th>Модель
                         <input
@@ -28,6 +36,7 @@ class TableComponent extends React.Component{
                     <th>Телефон</th>
                     <th>Пробег</th>
                     <th>Год выпуска</th>
+                    */}
                   </tr>
                 </thead>
                 <tbody>
