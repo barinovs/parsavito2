@@ -20,7 +20,6 @@ class Grid extends React.Component{
             descending: false
         }
         this.getAllAds = this.getAllAds.bind(this)
-        this.filterNameChange = this.filterNameChange.bind(this)
         this.showPrices = this.showPrices.bind(this)
         this.closePrices = this.closePrices.bind(this)
         this._sort = this._sort.bind(this)
@@ -70,20 +69,6 @@ class Grid extends React.Component{
 
     }
 
-    filterNameChange(e) {
-        const { records, filteredRecords, refreshFilteredRecords, showModalPrices } = this.props
-
-        const isSearched = searchTerm => item => {
-            return item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        }
-
-        const _filterRecords = records.filter(isSearched(e.target.value))
-        console.log('e', e);
-
-        refreshFilteredRecords(_filterRecords)
-
-    }
-
     _sort(e) {
         const { refreshFilteredRecords, filteredRecords } = this.props
         // console.log(e.target.getAttribute('isnumber'));
@@ -129,7 +114,6 @@ class Grid extends React.Component{
                     <TableComponent
                         tableHeaders={TABLE_HEADERS}
                         records={filteredRecords}
-                        filterNameChange={this.filterNameChange}
                         showPrices={this.showPrices}
                         _sort={this._sort}
                         descending={descending}
