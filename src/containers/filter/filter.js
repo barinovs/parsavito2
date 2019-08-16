@@ -32,6 +32,7 @@ class Filter extends React.Component{
         this.changeMaxPrice = this.changeMaxPrice.bind(this)
         this.showFilter = this.showFilter.bind(this)
         this.addSpaceInNumber = this.addSpaceInNumber.bind(this)
+        this.changeName = this.changeName.bind(this)
 
         this.state = {
           show: false,
@@ -111,6 +112,19 @@ class Filter extends React.Component{
         })
     }
 
+    changeName(e) {
+        const { records, filteredRecords, refreshFilteredRecords } = this.props
+
+        const isSearched = searchTerm => item => {
+            return item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        }
+
+        const _filterRecords = records.filter(isSearched(e.target.value))
+
+        refreshFilteredRecords(_filterRecords)
+
+    }
+
     setFilter() {
         const { getAllAds, refreshFilteredRecords } = this.props
         const { city, itemPerPage, minPrice, maxPrice } = this.state
@@ -180,7 +194,10 @@ class Filter extends React.Component{
                             Название
                         </Row>
                         <Row>
-                            {name}
+                            <Form.Control
+                                placeholder=""
+                                onChange={this.changeName}
+                            />                            
                         </Row>
                     </Col>
                   </Row>
@@ -256,7 +273,9 @@ class Filter extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-         showModalFilter: state.showModalFilter
+         showModalFilter: state.showModalFilter,
+         records: state.ads.records,
+         filteredRecords: state.ads.filteredRecords,
     }
 }
 
