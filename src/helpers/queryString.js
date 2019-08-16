@@ -30,14 +30,14 @@ export default function parseQueryString(parameters = {})
     const orderType = (parameters.orderType != null) ? parameters.orderType : DEFAULT_ORDER_TYPE;
     queryString += 'order_type=' + orderType + '&';
 
-    const search = (parameters.search != null) ? parameters.search : DEFAULT_SEARCH;
-    queryString += 'name=' + search + '&';
+    // const search = (parameters.search != null) ? parameters.search : DEFAULT_SEARCH;
+    // queryString += 'name=' + search + '&';
 
     const page = (parameters.page != null) ? parameters.page : DEFAULT_PAGE;
     queryString += 'page=' + page + '&';
 
-    const adQueryID = (parameters.adQueryID != null) ? parameters.adQueryID : DEFAULT_AD_QUERY_ID;
-    queryString += 'ad_query_id=' + adQueryID + '&';
+    // const adQueryID = (parameters.adQueryID != null) ? parameters.adQueryID : DEFAULT_AD_QUERY_ID;
+    // queryString += 'ad_query_id=' + adQueryID + '&';
 
     queryString = queryString.substr(0, queryString.length - 1);
     return queryString;

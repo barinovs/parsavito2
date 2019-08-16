@@ -9,7 +9,8 @@ const initialState = {
         city: '',
         minPrice: 0,
         maxPrice: 0,
-        itemPerPage: 30
+        itemPerPage: 30,
+        page: 1
     }
 }
 
