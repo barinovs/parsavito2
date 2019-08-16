@@ -8,7 +8,8 @@ import { ACTION_GET_ALL_ADS,
          ACTION_SET_STATE_MODAL_FILTER,
          ACTION_GET_CITIES,
          ACTION_SET_STATE_MODAL_SHOW_PRICES,
-         ACTION_GET_PRICES     } from './actionTypes'
+         ACTION_GET_PRICES,
+         ACTION_SET_FILTER_PARAMS} from './actionTypes'
 
 import {DEFAULT_ITEM_PER_PAGE,
         DEFAULT_ORDER_BY,
@@ -42,5 +43,6 @@ export { API_ENDPOINT,
          DEFAULT_MAXPRICE,
          ACTION_SET_STATE_MODAL_SHOW_PRICES,
          ACTION_GET_PRICES,
-         TABLE_HEADERS
+         TABLE_HEADERS,
+         ACTION_SET_FILTER_PARAMS
      }

@@ -8,6 +8,7 @@ import { getCities } from './getCities'
 import { setStateModalFilter } from './setStateModalFilter'
 import getPrices from './getPrices'
 import setStateModalShowPrices from './setStateModalShowPrices'
+import setFilterParams from './setFilterParams'
 
 export { getAllAds,
          getAdQueries,
@@ -18,4 +19,5 @@ export { getAllAds,
          getCities,
          setStateModalFilter,
          getPrices,
-         setStateModalShowPrices}
+         setStateModalShowPrices,
+         setFilterParams }

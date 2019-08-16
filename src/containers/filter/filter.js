@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
 
-import { getAllAds, setAdsIsLoad, refreshFilteredRecords } from '../../actions'
+import { getAllAds, setAdsIsLoad, refreshFilteredRecords, setFilterParams } from '../../actions'
 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -126,7 +126,7 @@ class Filter extends React.Component{
     }
 
     setFilter() {
-        const { getAllAds, refreshFilteredRecords } = this.props
+        const { getAllAds, refreshFilteredRecords, setFilterParams } = this.props
         const { city, itemPerPage, minPrice, maxPrice } = this.state
 
         const parameters = {
@@ -135,6 +135,8 @@ class Filter extends React.Component{
             minPrice,
             maxPrice
         }
+
+        setFilterParams(parameters)
 
         const queryString = parseQueryString(parameters)
 
@@ -197,7 +199,7 @@ class Filter extends React.Component{
                             <Form.Control
                                 placeholder=""
                                 onChange={this.changeName}
-                            />                            
+                            />
                         </Row>
                     </Col>
                   </Row>
@@ -285,6 +287,7 @@ const mapDispatchToProps = (dispatch) => {
         getAllAds: bindActionCreators(getAllAds, dispatch),
         setAdsIsLoad: bindActionCreators(setAdsIsLoad, dispatch),
         refreshFilteredRecords: bindActionCreators(refreshFilteredRecords, dispatch),
+        setFilterParams: bindActionCreators(setFilterParams, dispatch),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Filter)
