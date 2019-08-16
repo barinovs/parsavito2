@@ -13,7 +13,8 @@ class PaginationCont extends React.Component{
         super(props)
         this.state={
             linksCount:0,
-            currentLink:0
+            currentLink:0,
+            page: 1
         }
         this.getAdsByPage = this.getAdsByPage.bind(this)
     }
@@ -25,8 +26,11 @@ class PaginationCont extends React.Component{
     // }
 
     getAdsByPage(e) {
+        const { setAdsIsLoad } = this.props
+        setAdsIsLoad(false)
         const { filterParams, getAllAds, refreshFilteredRecords, setFilterParams } = this.props
-        filterParams.page = e.target.innerText
+        const page = e.target.innerText
+        filterParams.page = page
 
         const url = API_ENDPOINT + 'getData.php' + parseQueryString(filterParams)
         console.log(url)
@@ -39,10 +43,16 @@ class PaginationCont extends React.Component{
             setAdsIsLoad(true),
             refreshFilteredRecords(response.data.records)
         })
+
+        this.setState({
+            page
+        })
+
     }
 
     render() {
         const { recordCount, filterParams } = this.props
+        const { page } = this.state
         const countLinks = Math.ceil(recordCount / filterParams.itemPerPage)
         // const links = []
         // for (let i=1; i<=countLinks; i++ ) {
@@ -51,7 +61,10 @@ class PaginationCont extends React.Component{
 
 
         return(
-            <PaginationComponent countLinks={countLinks} getAdsByPage={this.getAdsByPage}/>
+            <PaginationComponent
+                countLinks={countLinks}
+                getAdsByPage={this.getAdsByPage}
+                page={page}/>
         )
     }
 

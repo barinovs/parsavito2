@@ -96,32 +96,34 @@ class Grid extends React.Component{
     }
 
     render() {
-        const { showModalPrices } = this.props
+        const { showModalPrices, adsIsLoad } = this.props
         const { url_key, prices, sortBy, descending } = this.state
         // const prices = [{id:1, price:700, dateChange:'2019-07-10'}, {id:2, price:500, dateChange:'2019-07-20'}]
-        if (!this.props.adsIsLoad) {
-            return <PreloaderComponent />
-        }else{
-            const { filteredRecords } = this.props
-            return(
-                <div>
-                    {showModalPrices
-                        && <ModalPricesComponent
-                                items={prices}
-                                closePrices={this.closePrices}
-                            />
-                    }
-                    <TableComponent
-                        tableHeaders={TABLE_HEADERS}
-                        records={filteredRecords}
-                        showPrices={this.showPrices}
-                        _sort={this._sort}
-                        descending={descending}
-                        sortBy={sortBy}
-                    />
-                </div>
-            )
-        }
+
+        const { filteredRecords } = this.props
+        return(
+            <div>
+                {
+                    !adsIsLoad
+                        && <PreloaderComponent />
+                }
+                {showModalPrices
+                    && <ModalPricesComponent
+                            items={prices}
+                            closePrices={this.closePrices}
+                        />
+                }
+                <TableComponent
+                    tableHeaders={TABLE_HEADERS}
+                    records={filteredRecords}
+                    showPrices={this.showPrices}
+                    _sort={this._sort}
+                    descending={descending}
+                    sortBy={sortBy}
+                />
+            </div>
+        )
+        
     }
 
 }
