@@ -12,11 +12,14 @@ class PaginationCont extends React.Component{
     constructor(props) {
         super(props)
         this.state={
-            linksCount:0,
+            countLinks:0,
             currentLink:0,
             page: 1
         }
         this.getAdsByPage = this.getAdsByPage.bind(this)
+        this.moveFirst = this.moveFirst.bind(this)
+        this.moveOnPages = this.moveOnPages.bind(this)
+        this.moveLast = this.moveLast.bind(this)
     }
 
     // componentDidMount() {
@@ -29,6 +32,7 @@ class PaginationCont extends React.Component{
         const { setAdsIsLoad } = this.props
         setAdsIsLoad(false)
         const { filterParams, getAllAds, refreshFilteredRecords, setFilterParams } = this.props
+
         const page = e.target.innerText
         filterParams.page = page
 
@@ -50,10 +54,46 @@ class PaginationCont extends React.Component{
 
     }
 
+    moveOnPages(page) {
+        const { setAdsIsLoad } = this.props
+        setAdsIsLoad(false)
+        const { filterParams, getAllAds, refreshFilteredRecords, setFilterParams, recordCount } = this.props
+        // const page = "1"
+        filterParams.page = page
+
+        const url = API_ENDPOINT + 'getData.php' + parseQueryString(filterParams)
+
+        axios.get(url, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            getAllAds(response.data)
+            setAdsIsLoad(true),
+            refreshFilteredRecords(response.data.records)
+        })
+
+        this.setState({
+            page
+        })
+    }
+
+    moveFirst() {
+        const page = "1"
+        this.moveOnPages(page)
+    }
+
+    moveLast() {
+        const { recordCount, filterParams } = this.props
+        const countLinks = Math.ceil(parseInt(recordCount) / parseInt(filterParams.itemPerPage))
+        const page = countLinks
+        this.moveOnPages(page)
+    }
+
     render() {
         const { recordCount, filterParams } = this.props
         const { page } = this.state
-        const countLinks = Math.ceil(recordCount / filterParams.itemPerPage)
+        const countLinks = Math.ceil(parseInt(recordCount) / parseInt(filterParams.itemPerPage))
+
         // const links = []
         // for (let i=1; i<=countLinks; i++ ) {
         //     links.push(API_ENDPOINT)
@@ -64,6 +104,8 @@ class PaginationCont extends React.Component{
             <PaginationComponent
                 countLinks={countLinks}
                 getAdsByPage={this.getAdsByPage}
+                moveFirst={this.moveFirst}
+                moveLast={this.moveLast}
                 page={page}/>
         )
     }

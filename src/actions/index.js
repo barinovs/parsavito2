@@ -9,6 +9,7 @@ import { setStateModalFilter } from './setStateModalFilter'
 import getPrices from './getPrices'
 import setStateModalShowPrices from './setStateModalShowPrices'
 import setFilterParams from './setFilterParams'
+import setCountLinks from './setCountLinks'
 
 export { getAllAds,
          getAdQueries,
@@ -20,4 +21,5 @@ export { getAllAds,
          setStateModalFilter,
          getPrices,
          setStateModalShowPrices,
-         setFilterParams }
+         setFilterParams,
+         setCountLinks}
