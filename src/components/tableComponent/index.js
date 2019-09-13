@@ -50,6 +50,7 @@ class TableComponent extends React.Component{
                 <tbody>
                     {
                         records.map( (item, idx) => {
+                            const pricesHaveChanged = item.countprices != "1"
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
                                     <td>{item.dateAdded}</td>
@@ -59,7 +60,7 @@ class TableComponent extends React.Component{
                                         id_avito={item.id_avito}
                                         onClick={showPrices}
                                     >
-                                        {item.price}
+                                        {item.price} {pricesHaveChanged && '\u2193'+'\u2191'+' (' + item.countprices + ')' }
                                     </td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.mileage}</td>
