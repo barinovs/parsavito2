@@ -5,6 +5,11 @@ export const TABLE_HEADERS = [
         isNumber: false
     },
     {
+        field: 'dateAdded',
+        name: 'Дата добавления',
+        isNumber: false
+    },
+    {
         field: 'name',
         name: 'Название',
         isNumber: false

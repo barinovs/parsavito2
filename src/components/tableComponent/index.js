@@ -52,6 +52,7 @@ class TableComponent extends React.Component{
                         records.map( (item, idx) => {
                             return(<tr key={item.id}>
                                     <td>{item.city}</td>
+                                    <td>{item.dateAdded}</td>
                                     <td><a href={item.url} target="blank">{item.name}</a></td>
                                     <td
                                         url={item.url}
