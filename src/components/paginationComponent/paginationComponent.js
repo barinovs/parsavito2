@@ -69,7 +69,7 @@ function PaginationComponent ( {countLinks, page, getAdsByPage, moveFirst, moveL
     }else{
         return (
             <Pagination>
-                <Pagination.First />
+                <Pagination.First onClick = {moveFirst}  />
                 <Pagination.Prev />
                 <Pagination.Item>{1}</Pagination.Item>
                 <Pagination.Ellipsis />
@@ -77,7 +77,7 @@ function PaginationComponent ( {countLinks, page, getAdsByPage, moveFirst, moveL
                 <Pagination.Ellipsis />
                 <Pagination.Item>{countLinks}</Pagination.Item>
                 <Pagination.Next />
-                <Pagination.Last />
+                <Pagination.Last onClick = {moveLast} />
             </Pagination>
         )
     }
