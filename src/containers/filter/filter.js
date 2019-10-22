@@ -126,8 +126,10 @@ class Filter extends React.Component{
     }
 
     setFilter() {
-        const { getAllAds, refreshFilteredRecords, setFilterParams } = this.props
+        const { getAllAds, refreshFilteredRecords, setFilterParams, setAdsIsLoad } = this.props
         const { city, itemPerPage, minPrice, maxPrice } = this.state
+
+        setAdsIsLoad(false)
 
         const parameters = {
             city,
